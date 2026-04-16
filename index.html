@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FirewingFab - Ignite Your Wings</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/motion@11.11.17/dist/motion.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --brand-blue: #0A192F;
+            --brand-accent: #F97316;
+            --brand-light: #F8FAFC;
+        }
+        
+        body {
+            background-color: var(--brand-blue);
+            color: var(--brand-light);
+            font-family: 'Outfit', sans-serif;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .text-gradient {
+            background: linear-gradient(to right, var(--brand-accent), #FB923C);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .orbit-path {
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        @keyframes flicker {
+            0%, 100% { transform: scaleY(1); opacity: 0.7; }
+            50% { transform: scaleY(1.4); opacity: 1; }
+        }
+
+        .fire-trail {
+            animation: flicker 0.2s infinite linear;
+        }
+
+        .fire-glow {
+            animation: flicker 0.15s infinite linear;
+            filter: blur(4px);
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-blue': '#0A192F',
+                        'brand-accent': '#F97316',
+                        'brand-light': '#F8FAFC',
+                    },
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="antialiased">
+    <!-- Navbar -->
+    <nav class="fixed top-0 left-0 right-0 z-50 px-6 py-6">
+        <div class="container mx-auto">
+            <div class="glass rounded-full px-8 py-4 flex items-center justify-between">
+                <a href="index.html" class="flex items-center gap-2 group">
+                    <div class="w-10 h-10 bg-brand-accent rounded-xl flex items-center justify-center group-hover:rotate-12 transition-transform">
+                        <i data-lucide="rocket" class="text-white w-6 h-6"></i>
+                    </div>
+                    <span class="text-xl font-black tracking-tighter uppercase">FIREWING<span class="text-brand-accent">FAB</span></span>
+                </a>
+
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="index.html" class="text-sm font-bold uppercase tracking-widest text-brand-accent transition-colors relative">
+                        Home
+                        <div class="absolute -bottom-1 left-0 right-0 h-0.5 bg-brand-accent"></div>
+                    </a>
+                    <a href="projects.html" class="text-sm font-bold uppercase tracking-widest text-slate-300 hover:text-brand-accent transition-colors">Projects</a>
+                    <a href="community.html" class="text-sm font-bold uppercase tracking-widest text-slate-300 hover:text-brand-accent transition-colors">Community</a>
+                    <a href="about.html" class="text-sm font-bold uppercase tracking-widest text-slate-300 hover:text-brand-accent transition-colors">About</a>
+                </div>
+
+                <div class="flex items-center gap-4">
+                    <a href="community.html" class="hidden sm:block px-6 py-2 bg-brand-accent text-white rounded-full text-sm font-bold hover:scale-105 transition-transform shadow-lg shadow-brand-accent/20">
+                        Join Club
+                    </a>
+                    <button id="mobile-menu-toggle" class="md:hidden w-10 h-10 glass rounded-xl flex items-center justify-center text-brand-light">
+                        <i data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Sidebar -->
+    <div id="mobile-sidebar" class="fixed inset-0 z-[60] hidden">
+        <div id="sidebar-overlay" class="absolute inset-0 bg-brand-blue/80 backdrop-blur-sm"></div>
+        <div id="sidebar-content" class="absolute top-0 right-0 bottom-0 w-[80%] max-w-xs bg-brand-blue border-l border-white/10 p-10 flex flex-col transform translate-x-full transition-transform duration-300">
+            <div class="flex items-center gap-2 mb-12">
+                <i data-lucide="rocket" class="text-brand-accent w-8 h-8"></i>
+                <span class="text-2xl font-black tracking-tighter uppercase">FIREWING<span class="text-brand-accent">FAB</span></span>
+            </div>
+            <div class="flex flex-col gap-8">
+                <a href="index.html" class="text-xl font-bold uppercase tracking-widest text-brand-accent">Home</a>
+                <a href="projects.html" class="text-xl font-bold uppercase tracking-widest text-slate-300">Projects</a>
+                <a href="community.html" class="text-xl font-bold uppercase tracking-widest text-slate-300">Community</a>
+                <a href="about.html" class="text-xl font-bold uppercase tracking-widest text-slate-300">About</a>
+            </div>
+            <div class="mt-auto">
+                <a href="community.html" class="block w-full text-center py-4 bg-brand-accent text-white rounded-2xl font-bold text-lg">Join Club</a>
+            </div>
+        </div>
+    </div>
+
+    <main class="flex flex-col gap-20 pb-20">
+        <!-- Hero Section -->
+        <section class="relative min-h-screen flex items-center overflow-hidden pt-36 md:pt-48 lg:pt-20">
+            <div class="absolute inset-0 z-0 pointer-events-none">
+                <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-brand-accent/10 rounded-full blur-[120px]"></div>
+                <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-500/5 rounded-full blur-[120px]"></div>
+            </div>
+
+            <div class="container mx-auto px-6 relative z-20">
+                <div class="grid lg:grid-cols-2 gap-16 items-center">
+                    <div id="hero-text" class="text-left relative z-30 opacity-0">
+                        <h1 class="text-6xl md:text-8xl font-black mb-6 tracking-tighter leading-none">
+                            IGNITE YOUR <br>
+                            <span class="relative inline-block">
+                                <span class="relative z-30 text-brand-accent font-black tracking-tighter drop-shadow-[0_0_10px_rgba(249,115,22,0.5)]">WINGS</span>
+                                <div class="absolute -inset-2 bg-brand-blue/60 blur-xl z-10 rounded-full pointer-events-none"></div>
+                            </span>
+                        </h1>
+                        <p class="text-xl md:text-2xl font-light text-slate-400 mb-8 max-w-xl">
+                            DREAM IT. BUILD IT. FLY IT. — Spark the fire that gives your mind wings.
+                        </p>
+
+                        <div class="h-24 flex items-center mb-8">
+                            <p id="quote-text" class="text-lg italic text-brand-accent font-medium border-l-2 border-brand-accent/30 pl-6 transition-opacity duration-500">
+                                "Dream is not that which you see while sleeping, it is something that does not let you sleep."
+                            </p>
+                        </div>
+
+                        <div class="flex flex-col sm:flex-row items-start sm:items-center gap-6">
+                            <a href="community.html" class="px-10 py-5 bg-brand-accent text-white rounded-2xl font-bold text-lg hover:scale-105 transition-transform flex items-center gap-2 shadow-xl shadow-brand-accent/30">
+                                Join Community <i data-lucide="chevron-right" class="w-5 h-5"></i>
+                            </a>
+                            <p class="text-slate-500 text-sm max-w-[200px]">
+                                Join India’s student innovation platform for drones, IoT & robotics
+                            </p>
+                        </div>
+                    </div>
+
+                    <div id="hero-animation" class="opacity-0 scale-90">
+                        <div class="relative w-full h-[300px] sm:h-[400px] md:h-[600px] flex items-center justify-center" style="perspective: 2000px; transform-style: preserve-3d;">
+                            <!-- Central Nucleus -->
+                            <div id="nucleus" class="relative z-20 w-32 h-32 sm:w-48 sm:h-48 md:w-64 md:h-64 rounded-full overflow-hidden border-4 border-brand-accent/30 shadow-[0_0_50px_rgba(249,115,22,0.3)] bg-brand-blue" style="transform: translateZ(1px);">
+                                <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=400" alt="Dr. APJ Abdul Kalam Sketch" class="w-full h-full object-cover grayscale contrast-125 opacity-80">
+                                <div class="absolute inset-0 bg-gradient-to-t from-brand-accent/20 to-transparent"></div>
+                            </div>
+
+                            <!-- Orbits -->
+                            <div id="orbits-container" class="absolute inset-0" style="transform-style: preserve-3d;">
+                                <!-- Orbits will be injected by JS -->
+                            </div>
+
+                            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] sm:w-[500px] h-[300px] sm:h-[500px] bg-brand-accent/5 rounded-full blur-[100px]" style="transform: translateZ(-250px);"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Upcoming Challenge -->
+        <section class="container mx-auto px-6">
+            <div id="challenge-card" class="glass rounded-3xl p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8 border-brand-accent/20 opacity-0 transform scale-95">
+                <div>
+                    <span class="text-brand-accent font-bold uppercase tracking-widest text-sm mb-2 block">Upcoming Challenge</span>
+                    <h2 class="text-4xl font-bold mb-4">Build a Line Following Bot</h2>
+                    <p class="text-slate-400">Put your engineering skills to the test. Registration closes in 5 days.</p>
+                </div>
+                <a href="community.html" class="px-8 py-4 bg-white text-brand-blue rounded-2xl font-bold hover:bg-slate-200 transition-colors">
+                    Register Now
+                </a>
+            </div>
+        </section>
+
+        <!-- Why Firewing? -->
+        <section class="container mx-auto px-6 py-20">
+            <div class="glass rounded-[3rem] p-8 md:p-16 border-white/5 relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-brand-accent/5 to-transparent pointer-events-none"></div>
+                
+                <div class="grid lg:grid-cols-2 gap-16 items-center relative z-10">
+                    <div>
+                        <div class="reveal">
+                            <h2 class="text-5xl md:text-6xl font-black mb-8 leading-tight">
+                                Why <span class="text-brand-accent">Firewing?</span>
+                            </h2>
+                            <p class="text-slate-400 text-lg mb-12 max-w-lg">
+                                We are more than just a platform; we are a launchpad for the next generation of Indian engineers and dreamers.
+                            </p>
+                        </div>
+                        
+                        <div class="grid gap-8">
+                            <div class="reveal group flex gap-6 p-6 rounded-3xl hover:bg-white/5 transition-colors border border-transparent hover:border-white/10">
+                                <div class="w-14 h-14 rounded-2xl bg-brand-accent/20 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+                                    <i data-lucide="zap" class="text-brand-accent w-7 h-7"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-2xl font-bold mb-3">Practical Experience</h3>
+                                    <p class="text-slate-400 leading-relaxed">
+                                        Theory only takes you so far—real innovation happens at the workbench. Our boards feature fully immersive, practical exercises designed to captivate young minds.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="reveal group flex gap-6 p-6 rounded-3xl hover:bg-white/5 transition-colors border border-transparent hover:border-white/10">
+                                <div class="w-14 h-14 rounded-2xl bg-blue-500/20 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+                                    <i data-lucide="users" class="text-blue-400 w-7 h-7"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-2xl font-bold mb-3">Free to Join Our Club</h3>
+                                    <p class="text-slate-400 leading-relaxed">
+                                        Education should be accessible to all. Joining our club is completely free, giving you access to exclusive resources, workshops, and a vibrant community.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="reveal relative">
+                        <div class="absolute -inset-4 bg-brand-accent/20 blur-3xl rounded-full opacity-30"></div>
+                        <div class="relative rounded-[2.5rem] overflow-hidden shadow-2xl border border-white/10">
+                            <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=800" alt="Innovation Lab" class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-brand-blue/80 via-transparent to-transparent"></div>
+                            <div class="absolute bottom-8 left-8 right-8 p-6 glass rounded-2xl">
+                                <div class="flex items-center gap-4">
+                                    <div class="w-12 h-12 bg-brand-accent rounded-full flex items-center justify-center">
+                                        <i data-lucide="rocket" class="text-white w-6 h-6"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-white font-bold">Ready to Fly?</p>
+                                        <p class="text-slate-300 text-xs">Join 500+ students building today.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Developers Marquee -->
+        <section class="bg-slate-900/50 py-20 overflow-hidden">
+            <div class="container mx-auto px-6 mb-16 text-center">
+                <h2 class="text-4xl font-bold mb-4">Developers</h2>
+                <p class="text-slate-400">Our Community Inspired Members</p>
+            </div>
+
+            <div class="relative flex overflow-hidden group">
+                <div id="marquee-content" class="flex gap-8 animate-marquee">
+                    <!-- Stories will be injected by JS -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-brand-blue border-t border-white/5 pt-20 pb-10">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-12 mb-20">
+                <div class="col-span-2">
+                    <div class="flex items-center gap-2 mb-6">
+                        <div class="w-8 h-8 bg-brand-accent rounded-lg flex items-center justify-center">
+                            <i data-lucide="rocket" class="text-white w-4 h-4"></i>
+                        </div>
+                        <span class="text-xl font-black tracking-tighter uppercase">FIREWING<span class="text-brand-accent">FAB</span></span>
+                    </div>
+                    <p class="text-slate-400 max-w-sm mb-8">
+                        Inspired by APJ Abdul Kalam. Empowering the next generation of RC builders and aerospace innovators in India.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="#" class="w-10 h-10 glass rounded-full flex items-center justify-center hover:text-brand-accent transition-colors">
+                            <i data-lucide="instagram" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 glass rounded-full flex items-center justify-center hover:text-brand-accent transition-colors">
+                            <i data-lucide="twitter" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 glass rounded-full flex items-center justify-center hover:text-brand-accent transition-colors">
+                            <i data-lucide="youtube" class="w-5 h-5"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="font-bold mb-6 uppercase tracking-widest text-sm">Quick Links</h4>
+                    <ul class="space-y-4 text-slate-400 text-sm">
+                        <li><a href="index.html" class="hover:text-brand-accent transition-colors">Home</a></li>
+                        <li><a href="projects.html" class="hover:text-brand-accent transition-colors">Projects</a></li>
+                        <li><a href="community.html" class="hover:text-brand-accent transition-colors">Community</a></li>
+                        <li><a href="about.html" class="hover:text-brand-accent transition-colors">About Us</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold mb-6 uppercase tracking-widest text-sm">Contact</h4>
+                    <ul class="space-y-4 text-slate-400 text-sm">
+                        <li class="flex items-center gap-2"><i data-lucide="mail" class="w-4 h-4"></i> info.abhram@gmail.com</li>
+                        <li class="flex items-center gap-2"><i data-lucide="phone" class="w-4 h-4"></i> +91 98765 43210</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-500">
+                <p>© 2024 FirewingFab. All rights reserved.</p>
+                <p class="flex items-center gap-1">Powered by <span class="text-slate-300 font-bold">Abhram</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Constants
+        const KALAM_QUOTES = [
+            "Dream is not that which you see while sleeping, it is something that does not let you sleep.",
+            "To succeed in your mission, you must have single-minded devotion to your goal.",
+            "If you want to shine like a sun, first burn like a sun.",
+            "All of us do not have equal talent. But, all of us have an equal opportunity to develop our talents.",
+            "Learning gives creativity, creativity leads to thinking, thinking provides knowledge, knowledge makes you great."
+        ];
+
+        const SUCCESS_STORIES = [
+            { name: "Arjun Sharma", project: "Autonomous FPV Drone", achievement: "Won 1st Prize at National Drone Tech 2024", story: "Built a custom drone from scratch using Firewing boards. Won the district competition and now mentoring 10+ juniors.", image: "https://picsum.photos/seed/student1/400/300" },
+            { name: "Priya Patel", project: "IoT Smart Car", achievement: "Innovation Award - State Science Fair", story: "Developed a gesture-controlled RC car. Her project was recognized for its unique control system and efficiency.", image: "https://picsum.photos/seed/student2/400/300" },
+            { name: "Rahul Verma", project: "Fixed Wing Glider", achievement: "Longest Flight Duration Record (Local Club)", story: "Designed an aerodynamic glider that stayed in the air for 15 minutes. Inspired by Kalam's aerospace vision.", image: "https://picsum.photos/seed/student3/400/300" },
+            { name: "Ananya Singh", project: "AI Obstacle Avoidance Bot", achievement: "Top 10 - Tech Innovators India", story: "Integrated AI with robotics to create a bot that navigates complex terrains autonomously. A true engineering marvel.", image: "https://picsum.photos/seed/student4/400/300" },
+            { name: "Vikram Reddy", project: "Solar Powered Drone", achievement: "Green Tech Excellence Award", story: "Pioneered a solar-charging system for long-endurance surveillance drones. Reducing carbon footprint in tech.", image: "https://picsum.photos/seed/student5/400/300" },
+            { name: "Sanya Malhotra", project: "Underwater ROV", achievement: "Best Marine Project 2023", story: "Built an affordable remotely operated vehicle for marine exploration. Inspiring girls to take up STEM.", image: "https://picsum.photos/seed/student6/400/300" }
+        ];
+
+        // Mobile Menu Logic
+        const menuToggle = document.getElementById('mobile-menu-toggle');
+        const sidebar = document.getElementById('mobile-sidebar');
+        const sidebarContent = document.getElementById('sidebar-content');
+        const sidebarOverlay = document.getElementById('sidebar-overlay');
+
+        menuToggle.addEventListener('click', () => {
+            sidebar.classList.remove('hidden');
+            setTimeout(() => sidebarContent.classList.remove('translate-x-full'), 10);
+        });
+
+        sidebarOverlay.addEventListener('click', () => {
+            sidebarContent.classList.add('translate-x-full');
+            setTimeout(() => sidebar.classList.add('hidden'), 300);
+        });
+
+        // Quote Rotation
+        let quoteIndex = 0;
+        const quoteText = document.getElementById('quote-text');
+        setInterval(() => {
+            quoteText.style.opacity = 0;
+            setTimeout(() => {
+                quoteIndex = (quoteIndex + 1) % KALAM_QUOTES.length;
+                quoteText.textContent = `"${KALAM_QUOTES[quoteIndex]}"`;
+                quoteText.style.opacity = 1;
+            }, 500);
+        }, 5000);
+
+        // Marquee Injection
+        const marquee = document.getElementById('marquee-content');
+        const stories = [...SUCCESS_STORIES, ...SUCCESS_STORIES];
+        stories.forEach(story => {
+            const card = document.createElement('div');
+            card.className = 'w-[350px] glass rounded-3xl overflow-hidden shrink-0';
+            card.innerHTML = `
+                <div class="aspect-video overflow-hidden">
+                    <img src="${story.image}" alt="${story.name}" class="w-full h-full object-cover">
+                </div>
+                <div class="p-6 whitespace-normal">
+                    <div class="flex items-center gap-2 text-brand-accent mb-2">
+                        <i data-lucide="award" class="w-4 h-4"></i>
+                        <span class="text-xs font-bold uppercase tracking-wider">${story.achievement}</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-1">${story.name}</h3>
+                    <p class="text-sm text-slate-500 mb-4">${story.project}</p>
+                    <p class="text-slate-400 text-sm leading-relaxed line-clamp-3">${story.story}</p>
+                </div>
+            `;
+            marquee.appendChild(card);
+        });
+        lucide.createIcons();
+
+        // 3D Nucleus Animation
+        const orbitsContainer = document.getElementById('orbits-container');
+        const orbits = [
+            { rx: 75, ry: 15, duration: 12 },
+            { rx: -45, ry: 45, duration: 18 },
+            { rx: 35, ry: -65, duration: 24 },
+        ];
+
+        orbits.forEach((orbit, i) => {
+            const orbitEl = document.createElement('div');
+            orbitEl.className = 'orbit-path';
+            orbitEl.style.width = `${300 + i * 50}px`;
+            orbitEl.style.height = `${300 + i * 50}px`;
+            orbitEl.style.transform = `translate(-50%, -50%) rotateX(${orbit.rx}deg) rotateY(${orbit.ry}deg)`;
+            orbitEl.style.transformStyle = 'preserve-3d';
+            
+            const rotatingContainer = document.createElement('div');
+            rotatingContainer.className = 'absolute inset-0';
+            rotatingContainer.style.transformStyle = 'preserve-3d';
+            
+            const rocketWrapper = document.createElement('div');
+            rocketWrapper.className = 'absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2';
+            rocketWrapper.style.transform = 'rotateX(-90deg) rotateY(90deg)';
+            rocketWrapper.style.transformStyle = 'preserve-3d';
+            
+            rocketWrapper.innerHTML = `
+                <div class="relative flex flex-col items-center">
+                    <div class="text-brand-accent drop-shadow-[0_0_15px_rgba(249,115,22,0.9)]">
+                        <i data-lucide="rocket" class="w-6 h-6 -rotate-45"></i>
+                    </div>
+                    <div class="absolute top-[85%] flex flex-col items-center pointer-events-none">
+                        <div class="w-1.5 h-6 bg-gradient-to-t from-transparent via-orange-500 to-yellow-300 rounded-full blur-[1px] origin-top fire-trail"></div>
+                        <div class="absolute top-0 w-3 h-10 bg-orange-600/20 rounded-full blur-[4px] origin-top fire-glow"></div>
+                    </div>
+                </div>
+            `;
+            
+            rotatingContainer.appendChild(rocketWrapper);
+            orbitEl.appendChild(rotatingContainer);
+            orbitsContainer.appendChild(orbitEl);
+
+            // Animate rotation
+            Motion.animate(rotatingContainer, { rotateZ: 360 }, { duration: orbit.duration, repeat: Infinity, ease: "linear" });
+        });
+        lucide.createIcons();
+
+        // Page Animations
+        Motion.animate("#hero-text", { opacity: 1, y: 0 }, { duration: 0.8 });
+        Motion.animate("#hero-animation", { opacity: 1, scale: 1 }, { duration: 1, delay: 0.2 });
+        
+        // Scroll reveal
+        const observerOptions = { threshold: 0.1 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    Motion.animate(entry.target, { opacity: 1, y: 0, scale: 1 }, { duration: 0.8 });
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal, #challenge-card').forEach(el => {
+            el.style.opacity = 0;
+            el.style.transform = 'translateY(20px)';
+            observer.observe(el);
+        });
+
+    </script>
+    <style>
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .animate-marquee {
+            animation: marquee 40s linear infinite;
+        }
+        .animate-marquee:hover {
+            animation-play-state: paused;
+        }
+    </style>
+</body>
+</html>

@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community - FirewingFab</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/motion@11.11.17/dist/motion.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --brand-blue: #0A192F;
+            --brand-accent: #F97316;
+            --brand-light: #F8FAFC;
+        }
+        
+        body {
+            background-color: var(--brand-blue);
+            color: var(--brand-light);
+            font-family: 'Outfit', sans-serif;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .text-gradient {
+            background: linear-gradient(to right, var(--brand-accent), #FB923C);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-blue': '#0A192F',
+                        'brand-accent': '#F97316',
+                        'brand-light': '#F8FAFC',
+                    },
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="antialiased">
+    <!-- Navbar -->
+    <nav class="fixed top-0 left-0 right-0 z-50 px-6 py-6">
+        <div class="container mx-auto">
+            <div class="glass rounded-full px-8 py-4 flex items-center justify-between">
+                <a href="index.html" class="flex items-center gap-2 group">
+                    <div class="w-10 h-10 bg-brand-accent rounded-xl flex items-center justify-center group-hover:rotate-12 transition-transform">
+                        <i data-lucide="rocket" class="text-white w-6 h-6"></i>
+                    </div>
+                    <span class="text-xl font-black tracking-tighter uppercase">FIREWING<span class="text-brand-accent">FAB</span></span>
+                </a>
+
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="index.html" class="text-sm font-bold uppercase tracking-widest text-slate-300 hover:text-brand-accent transition-colors">Home</a>
+                    <a href="projects.html" class="text-sm font-bold uppercase tracking-widest text-slate-300 hover:text-brand-accent transition-colors">Projects</a>
+                    <a href="community.html" class="text-sm font-bold uppercase tracking-widest text-brand-accent transition-colors relative">
+                        Community
+                        <div class="absolute -bottom-1 left-0 right-0 h-0.5 bg-brand-accent"></div>
+                    </a>
+                    <a href="about.html" class="text-sm font-bold uppercase tracking-widest text-slate-300 hover:text-brand-accent transition-colors">About</a>
+                </div>
+
+                <div class="flex items-center gap-4">
+                    <a href="community.html" class="hidden sm:block px-6 py-2 bg-brand-accent text-white rounded-full text-sm font-bold hover:scale-105 transition-transform shadow-lg shadow-brand-accent/20">
+                        Join Club
+                    </a>
+                    <button id="mobile-menu-toggle" class="md:hidden w-10 h-10 glass rounded-xl flex items-center justify-center text-brand-light">
+                        <i data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Sidebar -->
+    <div id="mobile-sidebar" class="fixed inset-0 z-[60] hidden">
+        <div id="sidebar-overlay" class="absolute inset-0 bg-brand-blue/80 backdrop-blur-sm"></div>
+        <div id="sidebar-content" class="absolute top-0 right-0 bottom-0 w-[80%] max-w-xs bg-brand-blue border-l border-white/10 p-10 flex flex-col transform translate-x-full transition-transform duration-300">
+            <div class="flex items-center gap-2 mb-12">
+                <i data-lucide="rocket" class="text-brand-accent w-8 h-8"></i>
+                <span class="text-2xl font-black tracking-tighter uppercase">FIREWING<span class="text-brand-accent">FAB</span></span>
+            </div>
+            <div class="flex flex-col gap-8">
+                <a href="index.html" class="text-xl font-bold uppercase tracking-widest text-slate-300">Home</a>
+                <a href="projects.html" class="text-xl font-bold uppercase tracking-widest text-slate-300">Projects</a>
+                <a href="community.html" class="text-xl font-bold uppercase tracking-widest text-brand-accent">Community</a>
+                <a href="about.html" class="text-xl font-bold uppercase tracking-widest text-slate-300">About</a>
+            </div>
+            <div class="mt-auto">
+                <a href="community.html" class="block w-full text-center py-4 bg-brand-accent text-white rounded-2xl font-bold text-lg">Join Club</a>
+            </div>
+        </div>
+    </div>
+
+    <main class="container mx-auto px-6 pt-32 pb-20">
+        <div id="header" class="text-center mb-20 opacity-0 transform translate-y-5">
+            <h1 class="text-6xl md:text-8xl font-black mb-6 tracking-tighter uppercase">DON'T BUILD <span class="text-gradient">ALONE</span></h1>
+            <p class="text-xl text-slate-400 max-w-2xl mx-auto">
+                Connect with thousands of builders, share your progress, and learn from the best.
+            </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8 mb-32">
+            <div class="reveal glass p-8 rounded-[2.5rem] border-brand-accent/20 flex flex-col items-center text-center opacity-0 transform translate-y-10">
+                <div class="w-16 h-16 bg-green-500/20 rounded-2xl flex items-center justify-center mb-6">
+                    <i data-lucide="message-circle" class="text-green-400 w-8 h-8"></i>
+                </div>
+                <h2 class="text-2xl font-bold mb-4">Join Our WhatsApp Group</h2>
+                <p class="text-slate-400 mb-8">Get instant help, share photos of your builds, and stay updated on local meetups.</p>
+                <button class="mt-auto px-8 py-4 bg-green-600 hover:bg-green-500 text-white rounded-2xl font-bold transition-colors w-full">
+                    Join WhatsApp
+                </button>
+            </div>
+
+            <div class="reveal glass p-8 rounded-[2.5rem] border-blue-500/20 flex flex-col items-center text-center opacity-0 transform translate-y-10">
+                <div class="w-16 h-16 bg-blue-500/20 rounded-2xl flex items-center justify-center mb-6">
+                    <i data-lucide="trophy" class="text-blue-400 w-8 h-8"></i>
+                </div>
+                <h2 class="text-2xl font-bold mb-4">Upcoming Challenge</h2>
+                <p class="text-slate-400 mb-8">"Build a Line Following Bot" — Show off your coding and hardware skills.</p>
+                <button class="mt-auto px-8 py-4 bg-brand-accent hover:bg-orange-500 text-white rounded-2xl font-bold transition-colors w-full">
+                    Register Now
+                </button>
+            </div>
+        </div>
+
+        <section class="mb-32">
+            <div class="flex items-center justify-between mb-12">
+                <h2 class="text-4xl font-bold">Achievements</h2>
+                <button class="text-brand-accent font-bold flex items-center gap-2 hover:gap-3 transition-all">
+                    View All <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                </button>
+            </div>
+
+            <div id="stories-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Stories will be injected by JS -->
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-brand-blue border-t border-white/5 pt-20 pb-10">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-12 mb-20">
+                <div class="col-span-2">
+                    <div class="flex items-center gap-2 mb-6">
+                        <div class="w-8 h-8 bg-brand-accent rounded-lg flex items-center justify-center">
+                            <i data-lucide="rocket" class="text-white w-4 h-4"></i>
+                        </div>
+                        <span class="text-xl font-black tracking-tighter uppercase">FIREWING<span class="text-brand-accent">FAB</span></span>
+                    </div>
+                    <p class="text-slate-400 max-w-sm mb-8">
+                        Inspired by APJ Abdul Kalam. Empowering the next generation of RC builders and aerospace innovators in India.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="#" class="w-10 h-10 glass rounded-full flex items-center justify-center hover:text-brand-accent transition-colors">
+                            <i data-lucide="instagram" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 glass rounded-full flex items-center justify-center hover:text-brand-accent transition-colors">
+                            <i data-lucide="twitter" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 glass rounded-full flex items-center justify-center hover:text-brand-accent transition-colors">
+                            <i data-lucide="youtube" class="w-5 h-5"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="font-bold mb-6 uppercase tracking-widest text-sm">Quick Links</h4>
+                    <ul class="space-y-4 text-slate-400 text-sm">
+                        <li><a href="index.html" class="hover:text-brand-accent transition-colors">Home</a></li>
+                        <li><a href="projects.html" class="hover:text-brand-accent transition-colors">Projects</a></li>
+                        <li><a href="community.html" class="hover:text-brand-accent transition-colors">Community</a></li>
+                        <li><a href="about.html" class="hover:text-brand-accent transition-colors">About Us</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold mb-6 uppercase tracking-widest text-sm">Contact</h4>
+                    <ul class="space-y-4 text-slate-400 text-sm">
+                        <li class="flex items-center gap-2"><i data-lucide="mail" class="w-4 h-4"></i> info.abhram@gmail.com</li>
+                        <li class="flex items-center gap-2"><i data-lucide="phone" class="w-4 h-4"></i> +91 98765 43210</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-500">
+                <p>© 2024 FirewingFab. All rights reserved.</p>
+                <p class="flex items-center gap-1">Powered by <span class="text-slate-300 font-bold">Abhram</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        const SUCCESS_STORIES = [
+            { name: "Arjun Sharma", project: "Autonomous FPV Drone", achievement: "Won 1st Prize at National Drone Tech 2024", story: "Built a custom drone from scratch using Firewing boards. Won the district competition and now mentoring 10+ juniors.", image: "https://picsum.photos/seed/student1/400/300" },
+            { name: "Priya Patel", project: "IoT Smart Car", achievement: "Innovation Award - State Science Fair", story: "Developed a gesture-controlled RC car. Her project was recognized for its unique control system and efficiency.", image: "https://picsum.photos/seed/student2/400/300" },
+            { name: "Rahul Verma", project: "Fixed Wing Glider", achievement: "Longest Flight Duration Record (Local Club)", story: "Designed an aerodynamic glider that stayed in the air for 15 minutes. Inspired by Kalam's aerospace vision.", image: "https://picsum.photos/seed/student3/400/300" },
+            { name: "Ananya Singh", project: "AI Obstacle Avoidance Bot", achievement: "Top 10 - Tech Innovators India", story: "Integrated AI with robotics to create a bot that navigates complex terrains autonomously. A true engineering marvel.", image: "https://picsum.photos/seed/student4/400/300" },
+            { name: "Vikram Reddy", project: "Solar Powered Drone", achievement: "Green Tech Excellence Award", story: "Pioneered a solar-charging system for long-endurance surveillance drones. Reducing carbon footprint in tech.", image: "https://picsum.photos/seed/student5/400/300" },
+            { name: "Sanya Malhotra", project: "Underwater ROV", achievement: "Best Marine Project 2023", story: "Built an affordable remotely operated vehicle for marine exploration. Inspiring girls to take up STEM.", image: "https://picsum.photos/seed/student6/400/300" }
+        ];
+
+        const grid = document.getElementById('stories-grid');
+        SUCCESS_STORIES.forEach((story, idx) => {
+            const card = document.createElement('div');
+            card.className = "reveal glass rounded-3xl p-6 relative overflow-hidden opacity-0 transform scale-90";
+            card.innerHTML = `
+                <div class="flex items-center gap-4 mb-6">
+                    <img src="${story.image}" alt="${story.name}" class="w-16 h-16 rounded-full object-cover border-2 border-brand-accent">
+                    <div>
+                        <h3 class="font-bold text-lg">${story.name}</h3>
+                        <p class="text-sm text-slate-500">${story.project}</p>
+                    </div>
+                </div>
+                
+                <div class="bg-brand-accent/10 text-brand-accent px-3 py-1 rounded-lg text-xs font-bold inline-block mb-4">
+                    ${story.achievement}
+                </div>
+
+                <p class="text-slate-400 text-sm italic leading-relaxed">
+                    "${story.story}"
+                </p>
+
+                <div class="absolute top-4 right-4 text-brand-accent/20">
+                    <i data-lucide="star" class="w-10 h-10 fill-current"></i>
+                </div>
+            `;
+            grid.appendChild(card);
+        });
+        lucide.createIcons();
+
+        // Mobile Menu Logic
+        const menuToggle = document.getElementById('mobile-menu-toggle');
+        const sidebar = document.getElementById('mobile-sidebar');
+        const sidebarContent = document.getElementById('sidebar-content');
+        const sidebarOverlay = document.getElementById('sidebar-overlay');
+
+        menuToggle.addEventListener('click', () => {
+            sidebar.classList.remove('hidden');
+            setTimeout(() => sidebarContent.classList.remove('translate-x-full'), 10);
+        });
+
+        sidebarOverlay.addEventListener('click', () => {
+            sidebarContent.classList.add('translate-x-full');
+            setTimeout(() => sidebar.classList.add('hidden'), 300);
+        });
+
+        // Animations
+        Motion.animate("#header", { opacity: 1, y: 0 }, { duration: 0.8 });
+        
+        const observerOptions = { threshold: 0.1 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    Motion.animate(entry.target, { opacity: 1, y: 0, scale: 1 }, { duration: 0.8 });
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>

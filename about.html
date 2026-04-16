@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - FirewingFab</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/motion@11.11.17/dist/motion.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --brand-blue: #0A192F;
+            --brand-accent: #F97316;
+            --brand-light: #F8FAFC;
+        }
+        
+        body {
+            background-color: var(--brand-blue);
+            color: var(--brand-light);
+            font-family: 'Outfit', sans-serif;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .text-gradient {
+            background: linear-gradient(to right, var(--brand-accent), #FB923C);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-blue': '#0A192F',
+                        'brand-accent': '#F97316',
+                        'brand-light': '#F8FAFC',
+                    },
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="antialiased">
+    <!-- Navbar -->
+    <nav class="fixed top-0 left-0 right-0 z-50 px-6 py-6">
+        <div class="container mx-auto">
+            <div class="glass rounded-full px-8 py-4 flex items-center justify-between">
+                <a href="index.html" class="flex items-center gap-2 group">
+                    <div class="w-10 h-10 bg-brand-accent rounded-xl flex items-center justify-center group-hover:rotate-12 transition-transform">
+                        <i data-lucide="rocket" class="text-white w-6 h-6"></i>
+                    </div>
+                    <span class="text-xl font-black tracking-tighter uppercase">FIREWING<span class="text-brand-accent">FAB</span></span>
+                </a>
+
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="index.html" class="text-sm font-bold uppercase tracking-widest text-slate-300 hover:text-brand-accent transition-colors">Home</a>
+                    <a href="projects.html" class="text-sm font-bold uppercase tracking-widest text-slate-300 hover:text-brand-accent transition-colors">Projects</a>
+                    <a href="community.html" class="text-sm font-bold uppercase tracking-widest text-slate-300 hover:text-brand-accent transition-colors">Community</a>
+                    <a href="about.html" class="text-sm font-bold uppercase tracking-widest text-brand-accent transition-colors relative">
+                        About
+                        <div class="absolute -bottom-1 left-0 right-0 h-0.5 bg-brand-accent"></div>
+                    </a>
+                </div>
+
+                <div class="flex items-center gap-4">
+                    <a href="community.html" class="hidden sm:block px-6 py-2 bg-brand-accent text-white rounded-full text-sm font-bold hover:scale-105 transition-transform shadow-lg shadow-brand-accent/20">
+                        Join Club
+                    </a>
+                    <button id="mobile-menu-toggle" class="md:hidden w-10 h-10 glass rounded-xl flex items-center justify-center text-brand-light">
+                        <i data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Sidebar -->
+    <div id="mobile-sidebar" class="fixed inset-0 z-[60] hidden">
+        <div id="sidebar-overlay" class="absolute inset-0 bg-brand-blue/80 backdrop-blur-sm"></div>
+        <div id="sidebar-content" class="absolute top-0 right-0 bottom-0 w-[80%] max-w-xs bg-brand-blue border-l border-white/10 p-10 flex flex-col transform translate-x-full transition-transform duration-300">
+            <div class="flex items-center gap-2 mb-12">
+                <i data-lucide="rocket" class="text-brand-accent w-8 h-8"></i>
+                <span class="text-2xl font-black tracking-tighter uppercase">FIREWING<span class="text-brand-accent">FAB</span></span>
+            </div>
+            <div class="flex flex-col gap-8">
+                <a href="index.html" class="text-xl font-bold uppercase tracking-widest text-slate-300">Home</a>
+                <a href="projects.html" class="text-xl font-bold uppercase tracking-widest text-slate-300">Projects</a>
+                <a href="community.html" class="text-xl font-bold uppercase tracking-widest text-slate-300">Community</a>
+                <a href="about.html" class="text-xl font-bold uppercase tracking-widest text-brand-accent">About</a>
+            </div>
+            <div class="mt-auto">
+                <a href="community.html" class="block w-full text-center py-4 bg-brand-accent text-white rounded-2xl font-bold text-lg">Join Club</a>
+            </div>
+        </div>
+    </div>
+
+    <main class="container mx-auto px-6 pt-32 pb-20">
+        <div class="max-w-4xl mx-auto">
+            <section id="vision" class="mb-32 opacity-0 transform translate-y-5">
+                <h1 class="text-6xl font-black mb-12">VISION</h1>
+                <div class="glass p-12 rounded-[3rem] border-brand-accent/20 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 p-8 opacity-10">
+                        <i data-lucide="rocket" class="w-32 h-32"></i>
+                    </div>
+                    <p class="text-2xl md:text-3xl font-light leading-relaxed text-slate-300">
+                        Inspired by the life and vision of <span class="text-brand-accent font-bold">Dr. APJ Abdul Kalam</span>, FirewingFab aims to democratize aerospace and robotics education for every student in India. 
+                    </p>
+                    <div class="mt-12 pt-12 border-t border-white/10">
+                        <p class="text-lg text-slate-400">
+                            We believe that innovation shouldn't be limited to elite institutions. By providing affordable hardware, free community access, and practical learning paths, we are building the next generation of Indian innovators.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="reveal mb-32 opacity-0 transform translate-y-10">
+                <h2 class="text-4xl font-bold mb-12">CONTACT US</h2>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="glass p-8 rounded-3xl space-y-6">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-brand-accent/10 rounded-xl flex items-center justify-center">
+                                <i data-lucide="mail" class="text-brand-accent w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs text-slate-500 uppercase font-bold">Email</p>
+                                <p class="font-bold">info.abhram@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-blue-500/10 rounded-xl flex items-center justify-center">
+                                <i data-lucide="phone" class="text-blue-400 w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs text-slate-500 uppercase font-bold">Phone</p>
+                                <p class="font-bold">+91 98765 43210</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-purple-500/10 rounded-xl flex items-center justify-center">
+                                <i data-lucide="map-pin" class="text-purple-400 w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs text-slate-500 uppercase font-bold">Location</p>
+                                <p class="font-bold">Innovation Hub, Bangalore, India</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="glass p-8 rounded-3xl flex flex-col justify-center items-center text-center">
+                        <div class="w-20 h-20 bg-white/5 rounded-full flex items-center justify-center mb-6">
+                            <i data-lucide="heart" class="text-red-400 w-10 h-10 animate-pulse fill-current"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Powered by Abhram</h3>
+                        <p class="text-slate-400 text-sm">Building tools for the thinkers and doers of tomorrow.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="bg-brand-blue border-t border-white/5 pt-20 pb-10">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-12 mb-20">
+                <div class="col-span-2">
+                    <div class="flex items-center gap-2 mb-6">
+                        <div class="w-8 h-8 bg-brand-accent rounded-lg flex items-center justify-center">
+                            <i data-lucide="rocket" class="text-white w-4 h-4"></i>
+                        </div>
+                        <span class="text-xl font-black tracking-tighter uppercase">FIREWING<span class="text-brand-accent">FAB</span></span>
+                    </div>
+                    <p class="text-slate-400 max-w-sm mb-8">
+                        Inspired by APJ Abdul Kalam. Empowering the next generation of RC builders and aerospace innovators in India.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="#" class="w-10 h-10 glass rounded-full flex items-center justify-center hover:text-brand-accent transition-colors">
+                            <i data-lucide="instagram" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 glass rounded-full flex items-center justify-center hover:text-brand-accent transition-colors">
+                            <i data-lucide="twitter" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 glass rounded-full flex items-center justify-center hover:text-brand-accent transition-colors">
+                            <i data-lucide="youtube" class="w-5 h-5"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="font-bold mb-6 uppercase tracking-widest text-sm">Quick Links</h4>
+                    <ul class="space-y-4 text-slate-400 text-sm">
+                        <li><a href="index.html" class="hover:text-brand-accent transition-colors">Home</a></li>
+                        <li><a href="projects.html" class="hover:text-brand-accent transition-colors">Projects</a></li>
+                        <li><a href="community.html" class="hover:text-brand-accent transition-colors">Community</a></li>
+                        <li><a href="about.html" class="hover:text-brand-accent transition-colors">About Us</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold mb-6 uppercase tracking-widest text-sm">Contact</h4>
+                    <ul class="space-y-4 text-slate-400 text-sm">
+                        <li class="flex items-center gap-2"><i data-lucide="mail" class="w-4 h-4"></i> info.abhram@gmail.com</li>
+                        <li class="flex items-center gap-2"><i data-lucide="phone" class="w-4 h-4"></i> +91 98765 43210</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-500">
+                <p>© 2024 FirewingFab. All rights reserved.</p>
+                <p class="flex items-center gap-1">Powered by <span class="text-slate-300 font-bold">Abhram</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        // Mobile Menu Logic
+        const menuToggle = document.getElementById('mobile-menu-toggle');
+        const sidebar = document.getElementById('mobile-sidebar');
+        const sidebarContent = document.getElementById('sidebar-content');
+        const sidebarOverlay = document.getElementById('sidebar-overlay');
+
+        menuToggle.addEventListener('click', () => {
+            sidebar.classList.remove('hidden');
+            setTimeout(() => sidebarContent.classList.remove('translate-x-full'), 10);
+        });
+
+        sidebarOverlay.addEventListener('click', () => {
+            sidebarContent.classList.add('translate-x-full');
+            setTimeout(() => sidebar.classList.add('hidden'), 300);
+        });
+
+        // Animations
+        Motion.animate("#vision", { opacity: 1, y: 0 }, { duration: 0.8 });
+        
+        const observerOptions = { threshold: 0.1 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    Motion.animate(entry.target, { opacity: 1, y: 0 }, { duration: 0.8 });
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
