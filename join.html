@@ -59,15 +59,15 @@
 </head>
 <body class="antialiased">
     <!-- Navbar -->
-    <nav class="fixed top-0 left-0 right-0 z-50 px-6 py-6">
-        <div class="container mx-auto">
-            <div class="glass rounded-full px-8 py-4 flex items-center justify-between">
-                <a href="index.html" class="flex items-center gap-2 group">
-                    <div class="w-10 h-10 bg-brand-accent rounded-xl flex items-center justify-center group-hover:rotate-12 transition-transform">
-                        <i data-lucide="rocket" class="text-white w-6 h-6"></i>
-                    </div>
-                    <span class="text-xl font-black tracking-tighter uppercase">FIREWING<span class="text-brand-accent">FAB</span></span>
-                </a>
+	    <nav class="fixed top-0 left-0 right-0 z-50 px-6 py-6">
+	        <div class="container mx-auto">
+	            <div class="glass rounded-full px-8 py-2.5 flex items-center justify-between">
+	                <a href="index.html" class="flex items-center gap-2 group">
+	                    <div class="w-[3.25rem] h-[3.25rem] rounded-xl overflow-hidden flex items-center justify-center group-hover:rotate-12 transition-transform">
+	                        <img src="https://ik.imagekit.io/b3s3mttie3/Firewings%20/firewingfab_logo" alt="FirewingFab" class="w-full h-full object-cover object-center scale-[1.3]">
+	                    </div>
+	                    <span class="text-xl font-black tracking-tighter uppercase">FIREWING<span class="text-brand-accent">FAB</span></span>
+	                </a>
 
                 <div class="hidden md:flex items-center gap-8">
                     <a href="index.html" class="text-sm font-bold uppercase tracking-widest text-slate-300 hover:text-brand-accent transition-colors">Home</a>
@@ -91,11 +91,13 @@
     <!-- Mobile Sidebar -->
     <div id="mobile-sidebar" class="fixed inset-0 z-[60] hidden">
         <div id="sidebar-overlay" class="absolute inset-0 bg-brand-blue/80 backdrop-blur-sm"></div>
-        <div id="sidebar-content" class="absolute top-0 right-0 bottom-0 w-[80%] max-w-xs bg-brand-blue border-l border-white/10 p-10 flex flex-col transform translate-x-full transition-transform duration-300">
-            <div class="flex items-center gap-2 mb-12">
-                <i data-lucide="rocket" class="text-brand-accent w-8 h-8"></i>
-                <span class="text-2xl font-black tracking-tighter uppercase">FIREWING<span class="text-brand-accent">FAB</span></span>
-            </div>
+	        <div id="sidebar-content" class="absolute top-0 right-0 bottom-0 w-[80%] max-w-xs bg-brand-blue border-l border-white/10 p-10 flex flex-col transform translate-x-full transition-transform duration-300">
+	            <div class="flex items-center gap-2 mb-12">
+	                <div class="w-[3.25rem] h-[3.25rem] rounded-xl overflow-hidden flex items-center justify-center">
+	                    <img src="https://ik.imagekit.io/b3s3mttie3/Firewings%20/firewingfab_logo" alt="FirewingFab" class="w-full h-full object-cover object-center scale-[1.3]">
+	                </div>
+	                <span class="text-2xl font-black tracking-tighter uppercase">FIREWING<span class="text-brand-accent">FAB</span></span>
+	            </div>
             <div class="flex flex-col gap-8">
                 <a href="index.html" class="text-xl font-bold uppercase tracking-widest text-slate-300">Home</a>
                 <a href="projects.html" class="text-xl font-bold uppercase tracking-widest text-slate-300">Projects</a>
@@ -152,6 +154,55 @@
                         </div>
                     </div>
 
+                    <div class="pt-2">
+                        <h2 class="text-xl font-bold mb-1">Your Dream / Vision</h2>
+                        <p class="text-sm text-slate-400">Tell us what you want to build. You can also choose to display it on the Home page.</p>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-bold uppercase tracking-widest text-slate-300 mb-2" for="username">Username</label>
+                            <input id="username" name="username" class="w-full px-4 py-3 rounded-2xl bg-white/5 border border-white/10 focus:border-brand-accent/60 focus:outline-none" placeholder="@yourname">
+                            <p class="text-xs text-slate-500 mt-2">Shown publicly only if you enable display below.</p>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold uppercase tracking-widest text-slate-300 mb-2" for="category">Category</label>
+                            <select id="category" name="category" required class="w-full px-4 py-3 rounded-2xl bg-white/5 border border-white/10 focus:border-brand-accent/60 focus:outline-none">
+                                <option value="" selected disabled>Select a category</option>
+                                <option value="Hardware">Hardware</option>
+                                <option value="Drone">Drone</option>
+                                <option value="Robot">Robot</option>
+                                <option value="IOT">IOT</option>
+                                <option value="Software">Software</option>
+                                <option value="Mobile App">Mobile App</option>
+                                <option value="Rover">Rover</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-bold uppercase tracking-widest text-slate-300 mb-2" for="subcategory">Subcategory</label>
+                            <input id="subcategory" name="subcategory" required class="w-full px-4 py-3 rounded-2xl bg-white/5 border border-white/10 focus:border-brand-accent/60 focus:outline-none" placeholder="FPV, Arduino, AI, etc.">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold uppercase tracking-widest text-slate-300 mb-2" for="note">Note</label>
+                            <textarea id="note" name="note" required rows="2" class="w-full px-4 py-3 rounded-2xl bg-white/5 border border-white/10 focus:border-brand-accent/60 focus:outline-none resize-none" placeholder="Short note about your idea"></textarea>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-bold uppercase tracking-widest text-slate-300 mb-2" for="dream">Dream / Vision</label>
+                        <textarea id="dream" name="dream" required rows="4" class="w-full px-4 py-3 rounded-2xl bg-white/5 border border-white/10 focus:border-brand-accent/60 focus:outline-none resize-none" placeholder="Example: I want to build an FPV drone that can map my campus and help during emergencies."></textarea>
+                    </div>
+
+                    <div class="flex items-start gap-3 glass rounded-2xl p-4 border border-white/10">
+                        <input id="display_on_home" name="display_on_home" value="yes" type="checkbox" class="mt-1 w-5 h-5 accent-orange-500">
+                        <label for="display_on_home" class="text-sm text-slate-300 leading-relaxed">
+                            I confirm that my <span class="text-white font-semibold">name, username, and dream</span> can be displayed on the Home page Dreamers section.
+                        </label>
+                    </div>
+
                     <div class="flex flex-col sm:flex-row gap-4 sm:items-center sm:justify-between pt-2">
                         <p class="text-xs text-slate-500">By submitting, you agree to be contacted by FirewingFab.</p>
                         <button id="submit-btn" type="submit" class="px-8 py-4 bg-brand-accent hover:bg-orange-500 text-white rounded-2xl font-bold transition-colors flex items-center justify-center gap-2">
@@ -165,7 +216,8 @@
 
                 <div class="mt-8 p-4 rounded-2xl bg-white/5 border border-white/10">
                     <p class="text-xs text-slate-400">
-                        Thanks! We’ll get back to you soon.
+                        Setup required: connect this form to Google Sheets using Apps Script.
+                        See <a href="JOIN_CLUB_SETUP.md" class="text-brand-accent font-bold hover:underline">JOIN_CLUB_SETUP.md</a>.
                     </p>
                 </div>
             </div>
@@ -197,16 +249,35 @@
         // After deploying Apps Script, set the URL in join-config.js:
         //   window.JOIN_CLUB_ENDPOINT = "https://script.google.com/macros/s/XXXXX/exec";
         const JOIN_CLUB_ENDPOINT = window.JOIN_CLUB_ENDPOINT || "";
+        const WHATSAPP_COMMUNITY_URL = "https://chat.whatsapp.com/KSWdUwGWWkGATnPZ3dv0nT";
 
         const form = document.getElementById('join-form');
         const submitBtn = document.getElementById('submit-btn');
         const statusEl = document.getElementById('form-status');
 
-        const setStatus = (type, message) => {
+        const setStatus = (type, message, action) => {
             statusEl.classList.remove('hidden');
             statusEl.classList.toggle('text-green-400', type === 'success');
             statusEl.classList.toggle('text-red-400', type === 'error');
-            statusEl.textContent = message;
+            statusEl.classList.toggle('flex', Boolean(action && action.href));
+            statusEl.classList.toggle('flex-col', Boolean(action && action.href));
+            statusEl.classList.toggle('gap-3', Boolean(action && action.href));
+            statusEl.innerHTML = '';
+
+            const msg = document.createElement('div');
+            msg.textContent = message;
+            statusEl.appendChild(msg);
+
+            if (action && action.href) {
+                const link = document.createElement('a');
+                link.href = action.href;
+                link.target = '_blank';
+                link.rel = 'noopener noreferrer';
+                link.className = 'inline-flex items-center justify-center gap-2 px-5 py-3 bg-green-600 hover:bg-green-500 text-white rounded-2xl font-bold transition-colors w-full sm:w-fit';
+                link.innerHTML = `${action.label || 'Join WhatsApp'} <i data-lucide="message-circle" class="w-5 h-5"></i>`;
+                statusEl.appendChild(link);
+                lucide.createIcons();
+            }
         };
 
         form.addEventListener('submit', async (e) => {
@@ -217,8 +288,17 @@
             if ((data.get('website') || '').toString().trim()) return;
 
             if (!JOIN_CLUB_ENDPOINT) {
-                setStatus('error', 'Form is not connected yet. Please Contact firewingfab@gmail.com.');
+                setStatus('error', 'Form is not connected yet. Please complete Google Sheets setup (JOIN_CLUB_SETUP.md).');
                 return;
+            }
+
+            const displayOnHome = (data.get('display_on_home') || '').toString() === 'yes';
+            if (displayOnHome) {
+                const username = (data.get('username') || '').toString().trim();
+                if (!username) {
+                    setStatus('error', 'Please enter your username to display in the Home page Dreamers section.');
+                    return;
+                }
             }
 
             submitBtn.disabled = true;
@@ -231,7 +311,10 @@
                     body: data
                 });
                 form.reset();
-                setStatus('success', 'Thanks! Your details were submitted successfully.');
+                setStatus('success', 'Thanks! Your details were submitted successfully.', {
+                    href: WHATSAPP_COMMUNITY_URL,
+                    label: 'Join WhatsApp Community'
+                });
             } catch (err) {
                 setStatus('error', 'Submission failed. Please try again, or contact us.');
             } finally {

@@ -83,15 +83,15 @@
 </head>
 <body class="antialiased">
     <!-- Navbar -->
-    <nav class="fixed top-0 left-0 right-0 z-50 px-6 py-6">
-        <div class="container mx-auto">
-            <div class="glass rounded-full px-8 py-4 flex items-center justify-between">
-                <a href="index.html" class="flex items-center gap-2 group">
-                    <div class="w-10 h-10 bg-brand-accent rounded-xl flex items-center justify-center group-hover:rotate-12 transition-transform">
-                        <i data-lucide="rocket" class="text-white w-6 h-6"></i>
-                    </div>
-                    <span class="text-xl font-black tracking-tighter uppercase">FIREWING<span class="text-brand-accent">FAB</span></span>
-                </a>
+	    <nav class="fixed top-0 left-0 right-0 z-50 px-6 py-6">
+	        <div class="container mx-auto">
+		            <div class="glass rounded-full px-8 py-2.5 flex items-center justify-between">
+		                <a href="index.html" class="flex items-center gap-2 group">
+		                    <div class="w-[3.25rem] h-[3.25rem] rounded-xl overflow-hidden flex items-center justify-center group-hover:rotate-12 transition-transform">
+		                        <img src="https://ik.imagekit.io/b3s3mttie3/Firewings%20/firewingfab_logo" alt="FirewingFab" class="w-full h-full object-cover object-center scale-[1.3]">
+		                    </div>
+		                    <span class="text-xl font-black tracking-tighter uppercase">FIREWING<span class="text-brand-accent">FAB</span></span>
+		                </a>
 
                 <div class="hidden md:flex items-center gap-8">
                     <a href="index.html" class="text-sm font-bold uppercase tracking-widest text-brand-accent transition-colors relative">
@@ -118,11 +118,13 @@
     <!-- Mobile Sidebar -->
     <div id="mobile-sidebar" class="fixed inset-0 z-[60] hidden">
         <div id="sidebar-overlay" class="absolute inset-0 bg-brand-blue/80 backdrop-blur-sm"></div>
-        <div id="sidebar-content" class="absolute top-0 right-0 bottom-0 w-[80%] max-w-xs bg-brand-blue border-l border-white/10 p-10 flex flex-col transform translate-x-full transition-transform duration-300">
-            <div class="flex items-center gap-2 mb-12">
-                <i data-lucide="rocket" class="text-brand-accent w-8 h-8"></i>
-                <span class="text-2xl font-black tracking-tighter uppercase">FIREWING<span class="text-brand-accent">FAB</span></span>
-            </div>
+	        <div id="sidebar-content" class="absolute top-0 right-0 bottom-0 w-[80%] max-w-xs bg-brand-blue border-l border-white/10 p-10 flex flex-col transform translate-x-full transition-transform duration-300">
+	            <div class="flex items-center gap-2 mb-12">
+	                <div class="w-[3.25rem] h-[3.25rem] rounded-xl overflow-hidden flex items-center justify-center">
+	                    <img src="https://ik.imagekit.io/b3s3mttie3/Firewings%20/firewingfab_logo" alt="FirewingFab" class="w-full h-full object-cover object-center scale-[1.3]">
+	                </div>
+	                <span class="text-2xl font-black tracking-tighter uppercase">FIREWING<span class="text-brand-accent">FAB</span></span>
+	            </div>
             <div class="flex flex-col gap-8">
                 <a href="index.html" class="text-xl font-bold uppercase tracking-widest text-brand-accent">Home</a>
                 <a href="projects.html" class="text-xl font-bold uppercase tracking-widest text-slate-300">Projects</a>
@@ -197,7 +199,7 @@
         <section class="container mx-auto px-6">
             <div id="challenge-card" class="glass rounded-3xl p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8 border-brand-accent/20 opacity-0 transform scale-95">
                 <div>
-                    <span class="text-brand-accent font-bold uppercase tracking-widest text-sm mb-2 block">Upcoming Challenge</span>
+                    <span class="text-brand-accent font-bold uppercase tracking-widest text-base mb-2 block">Upcoming Challenge</span>
                     <h2 class="text-4xl font-bold mb-4">Build a Line Following Bot</h2>
                     <p class="text-slate-400">Put your engineering skills to the test. Registration closes in 5 days.</p>
                 </div>
@@ -208,7 +210,7 @@
         </section>
 
         <!-- Why Firewing? -->
-        <section class="container mx-auto px-6 py-20">
+        <section class="container mx-auto px-6 pt-12 pb-4">
             <div class="glass rounded-[3rem] p-8 md:p-16 border-white/5 relative overflow-hidden">
                 <div class="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-brand-accent/5 to-transparent pointer-events-none"></div>
                 
@@ -272,9 +274,46 @@
             </div>
         </section>
 
+        <!-- Dreamers -->
+        <section class="pt-6 pb-6 relative overflow-hidden">
+            <div class="absolute inset-0 pointer-events-none">
+                <div class="absolute -top-20 -left-24 w-[420px] h-[420px] bg-brand-accent/10 rounded-full blur-[120px]"></div>
+                <div class="absolute -bottom-24 -right-24 w-[520px] h-[520px] bg-blue-500/5 rounded-full blur-[140px]"></div>
+            </div>
+            <div class="container mx-auto px-6 relative">
+                <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-10 mb-5">
+                    <div>
+                        <h2 class="text-4xl font-bold mb-4">Dreamers</h2>
+                        <p class="text-slate-400 max-w-2xl">
+                            Share your dream or vision, find like-minded builders, and turn ideas into real projects.
+                        </p>
+                    </div>
+                    <a href="join.html" class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-brand-accent hover:bg-orange-500 text-white rounded-2xl font-bold transition-colors shadow-xl shadow-brand-accent/30">
+                        Share Your Dream <i data-lucide="sparkles" class="w-5 h-5"></i>
+                    </a>
+                </div>
+
+                <div id="dreamers-loading" class="hidden text-center text-slate-500 text-sm mb-3">
+                    Loading dreamers...
+                </div>
+            </div>
+
+            <div class="relative flex overflow-hidden group">
+                <div id="dreamers-marquee" class="flex gap-8 py-2 animate-marquee-reverse">
+                    <!-- Dreamers will be injected by JS -->
+                </div>
+            </div>
+
+            <div class="container mx-auto px-6 relative">
+                <div id="dreamers-empty" class="hidden text-center mt-2">
+                    <p class="text-slate-400">No dreams published yet. Here are some examples — share yours to get featured.</p>
+                </div>
+            </div>
+        </section>
+
         <!-- Developers Marquee -->
-        <section class="bg-slate-900/50 py-20 overflow-hidden">
-            <div class="container mx-auto px-6 mb-16 text-center">
+        <section class="bg-slate-900/50 py-6 overflow-hidden">
+            <div class="container mx-auto px-6 mb-4 text-center">
                 <h2 class="text-4xl font-bold mb-4">Developers</h2>
                 <p class="text-slate-400">Our Community Inspired Members</p>
             </div>
@@ -289,14 +328,14 @@
 
     <footer class="bg-brand-blue border-t border-white/5 pt-20 pb-10">
         <div class="container mx-auto px-6">
-            <div class="grid md:grid-cols-4 gap-12 mb-20">
-                <div class="col-span-2">
-                    <div class="flex items-center gap-2 mb-6">
-                        <div class="w-8 h-8 bg-brand-accent rounded-lg flex items-center justify-center">
-                            <i data-lucide="rocket" class="text-white w-4 h-4"></i>
-                        </div>
-                        <span class="text-xl font-black tracking-tighter uppercase">FIREWING<span class="text-brand-accent">FAB</span></span>
-                    </div>
+	            <div class="grid md:grid-cols-4 gap-12 mb-20">
+	                <div class="col-span-2">
+	                    <div class="flex items-center gap-2 mb-6">
+	                        <div class="w-[7.1rem] h-[7.1rem] rounded-lg overflow-hidden flex items-center justify-center">
+	                            <img src="https://ik.imagekit.io/b3s3mttie3/Firewings%20/firewingfab_logo" alt="FirewingFab" class="w-full h-full object-cover object-center">
+	                        </div>
+	                        <span class="text-xl font-black tracking-tighter uppercase">FIREWING<span class="text-brand-accent">FAB</span></span>
+	                    </div>
                     <p class="text-slate-400 max-w-sm mb-8">
                         Inspired by APJ Abdul Kalam. Empowering the next generation of RC builders and aerospace innovators.
                     </p>
@@ -336,7 +375,7 @@
                     <h4 class="font-bold mb-6 uppercase tracking-widest text-sm">Contact</h4>
                     <ul class="space-y-4 text-slate-400 text-sm">
                         <li class="flex items-center gap-2"><i data-lucide="mail" class="w-4 h-4"></i> firewingfab@gmail.com</li>
-                        <li class="flex items-center gap-2"><i data-lucide="phone" class="w-4 h-4"></i> +91 9961 638 639</li>
+                        <li class="flex items-center gap-2"><i data-lucide="phone" class="w-4 h-4"></i> +91 99 61 638 639</li>
                     </ul>
                 </div>
             </div>
@@ -348,6 +387,7 @@
         </div>
     </footer>
 
+    <script src="join-config.js"></script>
     <script>
         // Initialize Lucide icons
         lucide.createIcons();
@@ -369,6 +409,172 @@
             { name: "Vikram Reddy", project: "Solar Powered Drone", achievement: "Green Tech Excellence Award", story: "Pioneered a solar-charging system for long-endurance surveillance drones. Reducing carbon footprint in tech.", image: "https://picsum.photos/seed/student5/400/300" },
             { name: "Sanya Malhotra", project: "Underwater ROV", achievement: "Best Marine Project 2023", story: "Built an affordable remotely operated vehicle for marine exploration. Inspiring girls to take up STEM.", image: "https://picsum.photos/seed/student6/400/300" }
         ];
+
+        // Dreamers (loaded from Google Sheets via Apps Script JSONP)
+        const dreamersMarquee = document.getElementById('dreamers-marquee');
+        const dreamersEmpty = document.getElementById('dreamers-empty');
+        const dreamersLoading = document.getElementById('dreamers-loading');
+
+        const SAMPLE_DREAMERS = [
+            { sample: true, name: "Your Name", username: "yourname", category: "Drone", subcategory: "FPV", dream: "I want to build a long‑range FPV drone for rescue missions in my area.", note: "Looking for guidance on frames + flight controller setup." },
+            { sample: true, name: "Your Name", username: "yourname", category: "IOT", subcategory: "Sensors", dream: "I want to create a smart campus safety system using low-cost sensors and alerts.", note: "Need ideas for power + connectivity." },
+            { sample: true, name: "Your Name", username: "yourname", category: "Robot", subcategory: "AI", dream: "I want to build a bot that can follow a person and carry equipment hands‑free.", note: "Exploring vision + path planning." },
+            { sample: true, name: "Your Name", username: "yourname", category: "Hardware", subcategory: "PCB", dream: "I want to design a beginner-friendly controller board for students.", note: "Need help selecting components and layouts." },
+            { sample: true, name: "Your Name", username: "yourname", category: "Mobile App", subcategory: "Flutter", dream: "I want to build a mobile app to track RC builds and share progress with the community.", note: "Looking for UI/UX ideas." },
+            { sample: true, name: "Your Name", username: "yourname", category: "Rover", subcategory: "Terrain", dream: "I want to build a rover that can map rough terrain and stream video.", note: "Planning motor + suspension options." }
+        ];
+
+        const normalizeListForMarquee = (items, minCount = 8) => {
+            const list = Array.isArray(items) ? items.filter(Boolean) : [];
+            if (!list.length) return SAMPLE_DREAMERS.slice(0, minCount);
+
+            const expanded = [...list];
+            while (expanded.length < minCount) expanded.push(...list);
+            return expanded.slice(0, minCount);
+        };
+
+        const createDreamerCard = (dreamer) => {
+            const card = document.createElement('div');
+            card.className = 'w-[380px] glass rounded-3xl overflow-hidden shrink-0 border border-white/10 hover:border-brand-accent/20 transition-colors';
+
+            const body = document.createElement('div');
+            body.className = 'p-6 whitespace-normal';
+
+            const top = document.createElement('div');
+            top.className = 'flex items-start justify-between gap-4 mb-5';
+
+            const tagWrap = document.createElement('div');
+            tagWrap.className = 'flex items-center gap-2';
+
+            const category = document.createElement('span');
+            category.className = 'px-3 py-1 rounded-full bg-brand-accent/10 text-brand-accent text-xs font-bold uppercase tracking-widest';
+            category.textContent = (dreamer.category || 'Dream').toString();
+            tagWrap.appendChild(category);
+
+            if (dreamer.subcategory) {
+                const sub = document.createElement('span');
+                sub.className = 'text-xs text-slate-500 font-semibold';
+                sub.textContent = dreamer.subcategory.toString();
+                tagWrap.appendChild(sub);
+            }
+
+            const rightWrap = document.createElement('div');
+            rightWrap.className = 'flex items-center gap-2 shrink-0';
+
+            if (dreamer.sample) {
+                const sample = document.createElement('span');
+                sample.className = 'px-2 py-1 rounded-full bg-white/5 text-slate-400 text-xs font-bold uppercase tracking-widest';
+                sample.textContent = 'Example';
+                rightWrap.appendChild(sample);
+            }
+
+            const icon = document.createElement('div');
+            icon.className = 'w-10 h-10 rounded-2xl bg-white/5 flex items-center justify-center text-brand-accent shrink-0';
+            icon.innerHTML = '<i data-lucide="sparkles" class="w-5 h-5"></i>';
+
+            top.appendChild(tagWrap);
+            rightWrap.appendChild(icon);
+            top.appendChild(rightWrap);
+            body.appendChild(top);
+
+            const dream = document.createElement('p');
+            dream.className = 'text-slate-200 text-base leading-relaxed mb-5 line-clamp-4';
+            dream.textContent = `“${(dreamer.dream || '').toString()}”`;
+            body.appendChild(dream);
+
+            if (dreamer.note) {
+                const note = document.createElement('p');
+                note.className = 'text-slate-400 text-sm leading-relaxed mb-6 line-clamp-2';
+                note.textContent = dreamer.note.toString();
+                body.appendChild(note);
+            }
+
+            const footer = document.createElement('div');
+            footer.className = 'pt-5 border-t border-white/5 flex items-center justify-between gap-4';
+
+            const nameWrap = document.createElement('div');
+            const name = document.createElement('p');
+            name.className = 'font-bold text-white';
+            name.textContent = (dreamer.name || 'Anonymous').toString();
+            nameWrap.appendChild(name);
+
+            const usernameText = (dreamer.username || '').toString().trim();
+            if (usernameText) {
+                const username = document.createElement('p');
+                username.className = 'text-xs text-slate-500 font-semibold';
+                username.textContent = usernameText.startsWith('@') ? usernameText : `@${usernameText}`;
+                nameWrap.appendChild(username);
+            }
+
+            footer.appendChild(nameWrap);
+            body.appendChild(footer);
+            card.appendChild(body);
+
+            return card;
+        };
+
+        const renderDreamers = (payload) => {
+            const dreamers = (payload && Array.isArray(payload.dreamers)) ? payload.dreamers : [];
+            if (!dreamersMarquee) return;
+
+            const hasDreamers = dreamers.length > 0;
+            if (dreamersEmpty) dreamersEmpty.classList.toggle('hidden', hasDreamers);
+
+            const base = normalizeListForMarquee(hasDreamers ? dreamers.slice(0, 9) : SAMPLE_DREAMERS, 8);
+            dreamersMarquee.innerHTML = '';
+            [...base, ...base].forEach(dreamer => {
+                dreamersMarquee.appendChild(createDreamerCard(dreamer));
+            });
+            lucide.createIcons();
+        };
+
+        const loadDreamers = () => {
+            const endpoint = (window.JOIN_CLUB_ENDPOINT || '').toString().trim();
+            if (!dreamersMarquee) return;
+
+            if (!endpoint) {
+                renderDreamers({ dreamers: [] });
+                return;
+            }
+
+            if (dreamersLoading) dreamersLoading.classList.remove('hidden');
+            let completed = false;
+            const callbackName = 'firewingDreamersCallback';
+            let jsonpScript = null;
+
+            const cleanup = () => {
+                completed = true;
+                if (dreamersLoading) dreamersLoading.classList.add('hidden');
+                try { delete window[callbackName]; } catch (e) {}
+                if (jsonpScript && jsonpScript.parentNode) jsonpScript.parentNode.removeChild(jsonpScript);
+            };
+
+            window[callbackName] = (payload) => {
+                if (completed) return;
+                cleanup();
+                renderDreamers(payload);
+            };
+
+            const sep = endpoint.includes('?') ? '&' : '?';
+            jsonpScript = document.createElement('script');
+            jsonpScript.src = `${endpoint}${sep}mode=dreamers&limit=9&callback=${callbackName}`;
+            jsonpScript.async = true;
+            jsonpScript.onerror = () => {
+                if (completed) return;
+                cleanup();
+                renderDreamers({ dreamers: [] });
+            };
+
+            document.body.appendChild(jsonpScript);
+
+            setTimeout(() => {
+                if (completed) return;
+                cleanup();
+                renderDreamers({ dreamers: [] });
+            }, 8000);
+        };
+
+        loadDreamers();
 
         // Mobile Menu Logic
         const menuToggle = document.getElementById('mobile-menu-toggle');
@@ -494,11 +700,27 @@
             0% { transform: translateX(0); }
             100% { transform: translateX(-50%); }
         }
+        @keyframes marquee-reverse {
+            0% { transform: translateX(-50%); }
+            100% { transform: translateX(0); }
+        }
         .animate-marquee {
             animation: marquee 40s linear infinite;
         }
         .animate-marquee:hover {
             animation-play-state: paused;
+        }
+        .animate-marquee-reverse {
+            animation: marquee-reverse 55s linear infinite;
+        }
+        .animate-marquee-reverse:hover {
+            animation-play-state: paused;
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .animate-marquee,
+            .animate-marquee-reverse {
+                animation: none;
+            }
         }
     </style>
 </body>
