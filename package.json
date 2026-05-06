@@ -1,14 +1,28 @@
 {
-  "name": "firewing-fab-static",
+  "name": "firewing-fab-next",
   "private": true,
   "version": "1.0.0",
-  "type": "module",
   "scripts": {
-    "dev": "serve . -p 3000",
-    "start": "serve . -p 3000",
-    "build": "echo 'No build step needed for static HTML'"
+    "dev": "next dev -p 3000",
+    "build": "next build",
+    "start": "next start -p 3000"
   },
   "dependencies": {
-    "serve": "^14.2.6"
+    "framer-motion": "^12.38.0",
+    "lucide": "^1.14.0",
+    "lucide-react": "^1.14.0",
+    "motion": "^12.38.0",
+    "next": "^16.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.2.4",
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "postcss": "^8.5.14",
+    "tailwindcss": "^4.2.4",
+    "typescript": "^5.0.0"
   }
 }
