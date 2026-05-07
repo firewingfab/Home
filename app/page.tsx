@@ -1,9 +1,9 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ChevronRight, Sparkles, Award, Rocket, Maximize2, X } from "lucide-react";
+import { ChevronLeft, ChevronRight, Sparkles, Award, Rocket, Maximize2, X } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 
 const KALAM_QUOTES = [
@@ -37,14 +37,7 @@ const SUCCESS_STORIES = [
     image: "/photos/IMG_0613.webp"
   },
   {
-    name: "Lab Visit by Saji Sir",
-    project: "Mentorship Moment",
-    achievement: "Proud Lab Milestone",
-    story: "A proud and powerful moment as Kerala's fire-winged mentor, Saji Sir, visited our lab.",
-    image: "/photos/IMG_7129.webp"
-  },
-  {
-    name: "MBITS Drone Logo Launch",
+    name: "MBITS Logo Launch",
     project: "Club Branding",
     achievement: "Logo Launch @ MBITS",
     story: "A memorable logo launch moment at MBITS Drone.",
@@ -56,85 +49,97 @@ type PortfolioImage = {
   src: string;
   alt: string;
   label: string;
+  previewFit?: "cover" | "contain";
 };
 
 const SAJI_HERO_IMAGE: PortfolioImage = {
   src: "/photos/saji_thomas/B7KDgJyde08VrU0WhUeh95JX.webp",
   alt: "Saji Thomas in his innovation journey.",
-  label: "Saji Thomas Portrait"
+  label: "Saji Thomas Portrait",
+  previewFit: "contain"
 };
 
 const SAJI_PORTFOLIO_GALLERY: PortfolioImage[] = [
   {
     src: "/photos/saji_thomas/23xair10.webp",
     alt: "Saji Thomas building and testing his aircraft setup.",
-    label: "Prototype Build"
+    label: "Prototype Build",
+    previewFit: "cover"
   },
   {
     src: "/photos/saji_thomas/records/RECORDS_page-0001.webp",
     alt: "Saji Thomas flight record and documentation page one.",
-    label: "Flight Record I"
+    label: "Flight Record I",
+    previewFit: "contain"
   },
   {
     src: "/photos/saji_thomas/records/RECORDS_page-0002.webp",
     alt: "Saji Thomas flight record and documentation page two.",
-    label: "Flight Record II"
+    label: "Flight Record II",
+    previewFit: "contain"
   }
 ];
 
-const SAJI_PORTFOLIO_PREVIEWS: PortfolioImage[] = [SAJI_HERO_IMAGE, ...SAJI_PORTFOLIO_GALLERY];
-const portfolioImageLayoutId = (src: string) => `saji-portfolio-${src}`;
-const portfolioImageTransition = {
-  type: "spring",
-  stiffness: 165,
-  damping: 30,
-  mass: 1.05
-} as const;
+const SAJI_PORTFOLIO_SLIDES: PortfolioImage[] = [SAJI_HERO_IMAGE, ...SAJI_PORTFOLIO_GALLERY];
 
 export default function HomePage() {
   const [quoteIndex, setQuoteIndex] = useState(0);
+  const [portfolioSlideIndex, setPortfolioSlideIndex] = useState(0);
   const [activePortfolioImage, setActivePortfolioImage] = useState<PortfolioImage | null>(null);
-  const isMountedRef = useRef(true);
 
   useEffect(() => {
-    isMountedRef.current = true;
     const interval = setInterval(() => {
-      if (!isMountedRef.current) return;
       setQuoteIndex((prev) => (prev + 1) % KALAM_QUOTES.length);
     }, 5000);
-    return () => {
-      isMountedRef.current = false;
-      clearInterval(interval);
-    };
+    return () => clearInterval(interval);
   }, []);
 
   useEffect(() => {
-    const handleEscape = (event: KeyboardEvent) => {
+    if (activePortfolioImage) {
+      return;
+    }
+
+    const interval = setInterval(() => {
+      setPortfolioSlideIndex((prev) => (prev + 1) % SAJI_PORTFOLIO_SLIDES.length);
+    }, 4200);
+    return () => clearInterval(interval);
+  }, [activePortfolioImage]);
+
+  useEffect(() => {
+    if (!activePortfolioImage) {
+      return;
+    }
+
+    const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         setActivePortfolioImage(null);
       }
     };
 
-    window.addEventListener("keydown", handleEscape);
-    return () => window.removeEventListener("keydown", handleEscape);
-  }, []);
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [activePortfolioImage]);
 
   useEffect(() => {
-    const originalOverflow = document.body.style.overflow;
-    if (activePortfolioImage) {
-      document.body.style.overflow = "hidden";
-    }
+    document.body.style.overflow = activePortfolioImage ? "hidden" : "";
     return () => {
-      document.body.style.overflow = originalOverflow;
+      document.body.style.overflow = "";
     };
   }, [activePortfolioImage]);
 
   const duplicatedStories = [...SUCCESS_STORIES, ...SUCCESS_STORIES];
+  const activeSlide = SAJI_PORTFOLIO_SLIDES[portfolioSlideIndex];
+  const showPreviousSlide = () => {
+    setPortfolioSlideIndex((prev) => (prev - 1 + SAJI_PORTFOLIO_SLIDES.length) % SAJI_PORTFOLIO_SLIDES.length);
+  };
+  const showNextSlide = () => {
+    setPortfolioSlideIndex((prev) => (prev + 1) % SAJI_PORTFOLIO_SLIDES.length);
+  };
 
   return (
-    <main className="flex flex-col gap-20 pb-20">
+    <main className="flex flex-col gap-8 pb-12">
       {/* Hero Section */}
-      <section className="relative min-h-screen flex flex-col md:flex-row items-center overflow-hidden pt-28 md:pt-48 lg:pt-20 pb-16">
+      <section className="relative min-h-screen flex flex-col md:flex-row items-center overflow-hidden pt-28 md:pt-48 lg:pt-20 pb-8">
         <div className="absolute inset-0 z-0 pointer-events-none">
           <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-brand-accent/10 rounded-full blur-[120px]" />
           <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-brand-accent/5 rounded-full blur-[120px]" />
@@ -194,7 +199,13 @@ export default function HomePage() {
             >
               <div className="relative w-full h-[250px] sm:h-[400px] md:h-[600px] flex items-center justify-center mt-12 md:mt-0" style={{ perspective: "2000px", transformStyle: "preserve-3d" }}>
                 <div className="relative z-20 w-28 h-28 sm:w-48 sm:h-48 md:w-64 md:h-64 rounded-full overflow-hidden border-4 border-brand-accent/30 shadow-[0_0_50px_rgba(249,115,22,0.3)] bg-brand-blue" style={{ transform: "translateZ(1px)" }}>
-                  <Image src="https://ik.imagekit.io/b3s3mttie3/Firewings%20/kalam.png" alt="Dr. APJ Abdul Kalam Sketch" fill className="object-cover grayscale contrast-125 opacity-80" />
+                  <Image
+                    src="https://ik.imagekit.io/b3s3mttie3/Firewings%20/kalam.png"
+                    alt="Dr. APJ Abdul Kalam Sketch"
+                    fill
+                    sizes="(min-width: 768px) 256px, (min-width: 640px) 192px, 112px"
+                    className="object-cover grayscale contrast-125 opacity-80"
+                  />
                   <div className="absolute inset-0 bg-gradient-to-t from-brand-accent/20 to-transparent" />
                 </div>
 
@@ -247,7 +258,7 @@ export default function HomePage() {
       </section>
 
       {/* Upcoming Challenge */}
-      <section className="container mx-auto px-6 pt-12 pb-4">
+      <section className="container mx-auto px-6 py-1">
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
@@ -266,7 +277,7 @@ export default function HomePage() {
       </section>
 
       {/* Why Firewing? */}
-      <section className="container mx-auto px-6 pt-12 pb-4">
+      <section className="container mx-auto px-6 py-1">
         <div className="glass rounded-3xl md:rounded-[3rem] p-6 md:p-16 border-white/5 relative overflow-hidden">
           <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-brand-accent/5 to-transparent pointer-events-none" />
 
@@ -311,7 +322,14 @@ export default function HomePage() {
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="relative">
               <div className="absolute -inset-4 bg-brand-accent/20 blur-3xl rounded-full opacity-30" />
               <div className="relative rounded-[2.5rem] overflow-hidden shadow-2xl border border-white/10 aspect-[4/3]">
-                <Image src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=800" alt="Innovation Lab" fill className="object-cover" />
+                <Image
+                  src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=800"
+                  alt="Innovation Lab"
+                  fill
+                  preload
+                  sizes="(min-width: 1024px) 40vw, 92vw"
+                  className="object-cover"
+                />
                 <div className="absolute inset-0 bg-gradient-to-t from-brand-blue/80 via-transparent to-transparent" />
                 <div className="absolute bottom-8 left-8 right-8 p-6 glass rounded-2xl">
                   <div className="flex items-center gap-4">
@@ -331,7 +349,7 @@ export default function HomePage() {
       </section>
 
       {/* Saji Thomas Portfolio */}
-      <section className="pt-8 pb-8 relative overflow-hidden">
+      <section className="py-2 relative overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute -top-24 left-1/3 w-[420px] h-[420px] bg-brand-accent/15 rounded-full blur-[130px]" />
           <div className="absolute -bottom-24 right-0 w-[520px] h-[520px] bg-orange-500/10 rounded-full blur-[150px]" />
@@ -342,28 +360,28 @@ export default function HomePage() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="relative overflow-hidden rounded-[2.25rem] md:rounded-[3rem] border border-white/10 bg-gradient-to-br from-white/[0.06] via-white/[0.02] to-transparent"
+            className="relative overflow-hidden rounded-[2rem] md:rounded-[2.5rem] border border-white/10 bg-gradient-to-br from-white/[0.06] via-white/[0.02] to-transparent"
           >
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_10%,rgba(249,115,22,0.25),transparent_45%)]" />
             <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:42px_42px] opacity-30" />
 
-            <div className="relative z-10 grid xl:grid-cols-[1.1fr,0.9fr] gap-8 lg:gap-12 p-6 md:p-10 lg:p-14">
-              <div className="space-y-7">
-                <div className="inline-flex items-center px-4 py-2 rounded-full border border-brand-accent/30 bg-brand-accent/10 text-brand-accent text-xs md:text-sm font-bold tracking-[0.2em] uppercase">
+            <div className="relative z-10 grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_420px] items-start gap-6 lg:gap-8 p-5 md:p-7 lg:p-10">
+              <div className="order-1 space-y-5 text-left lg:pr-2">
+                <div className="inline-flex items-center px-3.5 py-1.5 rounded-full border border-brand-accent/30 bg-brand-accent/10 text-brand-accent text-[11px] md:text-xs font-bold tracking-[0.18em] uppercase">
                   Portfolio Spotlight
                 </div>
 
                 <div>
-                  <p className="text-brand-accent font-bold uppercase tracking-[0.16em] text-sm mb-2">Saji Thomas</p>
-                  <h2 className="text-4xl md:text-5xl lg:text-6xl font-black leading-tight tracking-tight">
+                  <p className="text-brand-accent font-bold uppercase tracking-[0.16em] text-lg mb-2">Saji Thomas</p>
+                  <h2 className="text-3xl md:text-4xl lg:text-5xl font-black leading-tight tracking-tight">
                     The Man Who Gave Wings to Dreams
                   </h2>
-                  <p className="text-lg md:text-2xl text-slate-200 mt-4 font-medium">
+                  <p className="text-base md:text-xl text-slate-200 mt-3 font-medium">
                     Self-Taught Aerospace Innovator
                   </p>
                 </div>
 
-                <div className="space-y-5 text-slate-200 leading-relaxed text-base md:text-lg">
+                <div className="space-y-4 text-slate-200 leading-relaxed text-sm md:text-base">
                   <p>
                     Beyond the limitations of speech and hearing, Saji listened only to his dreams.
                   </p>
@@ -372,8 +390,8 @@ export default function HomePage() {
                   </p>
                 </div>
 
-                <div className="rounded-2xl border border-brand-accent/25 bg-brand-accent/10 p-5 md:p-6">
-                  <p className="text-slate-100 text-base md:text-lg leading-relaxed">
+                <div className="rounded-2xl border border-brand-accent/25 bg-brand-accent/10 p-4 md:p-5">
+                  <p className="text-slate-100 text-sm md:text-base leading-relaxed">
                     The spirit of FirewingFab is built on the same belief &mdash;
                     <span className="block mt-2 font-semibold text-white">
                       &ldquo;It is not limitations, but dreams, that lift people higher.&rdquo;
@@ -381,76 +399,123 @@ export default function HomePage() {
                   </p>
                 </div>
 
-                <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-5 md:p-6">
+                <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-4 md:p-5">
                   <p className="text-xs uppercase tracking-[0.2em] text-brand-accent font-bold mb-2">Signature Line</p>
-                  <p className="text-2xl md:text-3xl font-semibold text-white italic leading-snug">
+                  <p className="text-xl md:text-2xl font-semibold text-white italic leading-snug">
                     &ldquo;Dreams don&rsquo;t need permission to fly.&rdquo;
                   </p>
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 auto-rows-fr">
-                {SAJI_PORTFOLIO_PREVIEWS.map((item, index) => (
-                  <motion.button
-                    key={item.src}
+              <div className="order-2 w-full max-w-[420px] ml-auto lg:ml-0 lg:justify-self-end lg:self-start">
+                <div className="relative rounded-2xl overflow-hidden border border-white/10 bg-white/[0.03]">
+                  <button
                     type="button"
-                    onClick={() => setActivePortfolioImage(item)}
-                    className={`group relative rounded-2xl overflow-hidden border border-white/10 bg-white/[0.03] text-left transition-all hover:-translate-y-1 hover:border-brand-accent/40 hover:bg-white/[0.06] focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent ${
-                      index === 0 ? "sm:row-span-2 min-h-[360px] sm:min-h-[540px]" : "min-h-[220px]"
-                    }`}
-                    whileHover={{ y: -4 }}
-                    transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                    onClick={() => setActivePortfolioImage(activeSlide)}
+                    className="relative aspect-[4/5] w-full text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent"
+                    aria-label={`Open full image for ${activeSlide.label}`}
                   >
-                    <motion.div
-                      layoutId={portfolioImageLayoutId(item.src)}
-                      transition={portfolioImageTransition}
-                      className="absolute inset-0"
-                    >
-                      <Image
-                        src={item.src}
-                        alt={item.alt}
-                        fill
-                        className="object-cover transition-transform duration-700 group-hover:scale-110"
-                      />
-                    </motion.div>
-                    <div className="absolute inset-0 bg-gradient-to-t from-brand-blue/90 via-brand-blue/20 to-transparent" />
-                    <div className="absolute top-3 right-3 rounded-full border border-white/25 bg-brand-blue/70 p-1.5 text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                    <AnimatePresence mode="wait">
+                      <motion.div
+                        key={activeSlide.src}
+                        initial={{ opacity: 0, x: 14 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, x: -14 }}
+                        transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+                        className="absolute inset-0"
+                      >
+                        <Image
+                          src={activeSlide.src}
+                          alt={activeSlide.alt}
+                          fill
+                          loading={portfolioSlideIndex === 0 ? "eager" : "lazy"}
+                          fetchPriority={portfolioSlideIndex === 0 ? "high" : "auto"}
+                          sizes="(min-width: 1280px) 420px, (min-width: 1024px) 34vw, (min-width: 768px) 46vw, 92vw"
+                          className={
+                            activeSlide.previewFit === "contain"
+                              ? "object-contain bg-slate-950/70 p-1.5 md:p-2"
+                              : "object-cover"
+                          }
+                        />
+                      </motion.div>
+                    </AnimatePresence>
+                    <div className="absolute inset-0 bg-gradient-to-t from-brand-blue/90 via-brand-blue/25 to-transparent pointer-events-none" />
+
+                    <div className="absolute top-3 right-3 inline-flex items-center gap-2 rounded-full border border-white/20 bg-brand-blue/70 px-2.5 py-1 text-[10px] uppercase tracking-[0.18em] text-slate-100">
+                      <span>{portfolioSlideIndex + 1}</span>
+                      <span className="text-slate-300">/</span>
+                      <span>{SAJI_PORTFOLIO_SLIDES.length}</span>
+                    </div>
+                    <div className="absolute top-3 left-3 inline-flex items-center justify-center rounded-full border border-white/20 bg-brand-blue/70 p-1.5 text-white">
                       <Maximize2 className="w-3.5 h-3.5" />
                     </div>
-                    <div className="absolute bottom-0 left-0 right-0 px-4 py-3">
-                      <p className="text-xs md:text-sm tracking-[0.14em] uppercase font-bold text-slate-100">
-                        {item.label}
-                      </p>
-                      <p className="text-[10px] md:text-[11px] text-slate-300 mt-1">Click to view full image</p>
+
+                    <div className="absolute bottom-0 left-0 right-0 px-4 py-3.5">
+                      <p className="text-xs tracking-[0.14em] uppercase font-bold text-slate-100">{activeSlide.label}</p>
+                      <p className="text-[10px] text-slate-300 mt-0.5">Click to view full image</p>
                     </div>
-                  </motion.button>
-                ))}
+                  </button>
+                </div>
+
+                <div className="mt-3 flex items-center justify-between gap-3">
+                  <div className="flex items-center gap-2">
+                    <button
+                      type="button"
+                      onClick={showPreviousSlide}
+                      className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/15 bg-white/[0.04] text-slate-100 transition-colors hover:border-brand-accent/40 hover:text-brand-accent focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent"
+                      aria-label="Previous portfolio image"
+                    >
+                      <ChevronLeft className="w-4 h-4" />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={showNextSlide}
+                      className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/15 bg-white/[0.04] text-slate-100 transition-colors hover:border-brand-accent/40 hover:text-brand-accent focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent"
+                      aria-label="Next portfolio image"
+                    >
+                      <ChevronRight className="w-4 h-4" />
+                    </button>
+                  </div>
+
+                  <div className="flex items-center gap-1.5">
+                    {SAJI_PORTFOLIO_SLIDES.map((slide, index) => (
+                      <button
+                        key={slide.src}
+                        type="button"
+                        onClick={() => setPortfolioSlideIndex(index)}
+                        className={`h-2 rounded-full transition-all ${
+                          index === portfolioSlideIndex ? "w-6 bg-brand-accent" : "w-2 bg-white/35 hover:bg-white/55"
+                        }`}
+                        aria-label={`Show ${slide.label}`}
+                      />
+                    ))}
+                  </div>
+                </div>
               </div>
             </div>
           </motion.div>
         </div>
       </section>
 
-      <AnimatePresence initial={false} mode="wait">
+      <AnimatePresence>
         {activePortfolioImage && (
           <motion.div
-            initial={{ opacity: 0, backdropFilter: "blur(0px)" }}
-            animate={{ opacity: 1, backdropFilter: "blur(8px)" }}
-            exit={{ opacity: 0, backdropFilter: "blur(0px)" }}
-            transition={{ duration: 0.42, ease: [0.16, 1, 0.3, 1] }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
             onClick={() => setActivePortfolioImage(null)}
             className="fixed inset-0 z-[120] p-4 md:p-8 lg:p-10 flex items-center justify-center"
             role="dialog"
             aria-modal="true"
             aria-label={`${activePortfolioImage.label} full image preview`}
           >
-            <motion.div className="absolute inset-0 bg-brand-blue/90" />
+            <motion.div className="absolute inset-0 bg-brand-blue/90 backdrop-blur-xl" />
 
             <motion.div
               initial={{ y: 20, opacity: 0, scale: 0.98 }}
               animate={{ y: 0, opacity: 1, scale: 1 }}
               exit={{ y: 20, opacity: 0, scale: 0.98 }}
-              transition={{ duration: 0.42, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.2 }}
               onClick={(event) => event.stopPropagation()}
               className="relative z-10 w-full max-w-6xl rounded-[2rem] border border-white/15 bg-slate-950/80 shadow-[0_30px_120px_rgba(0,0,0,0.6)] p-3 md:p-5"
             >
@@ -469,11 +534,7 @@ export default function HomePage() {
                 </button>
               </div>
 
-              <motion.div
-                layoutId={portfolioImageLayoutId(activePortfolioImage.src)}
-                transition={portfolioImageTransition}
-                className="relative w-full h-[60vh] md:h-[72vh] rounded-2xl overflow-hidden border border-white/10 bg-black/30"
-              >
+              <div className="relative w-full h-[60vh] md:h-[72vh] rounded-2xl overflow-hidden border border-white/10 bg-black/30">
                 <Image
                   src={activePortfolioImage.src}
                   alt={activePortfolioImage.alt}
@@ -482,14 +543,14 @@ export default function HomePage() {
                   className="object-contain"
                   priority
                 />
-              </motion.div>
+              </div>
             </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
 
       {/* Developers Marquee */}
-      <section className="bg-brand-blue/50 py-6 overflow-hidden">
+      <section className="bg-brand-blue/50 py-3 overflow-hidden">
         <div className="container mx-auto px-6 mb-4 text-center">
           <h2 className="text-4xl font-bold mb-4">Developer &amp; Achievements</h2>
           <p className="text-slate-300">Our Community Inspired Members</p>
@@ -500,7 +561,14 @@ export default function HomePage() {
             {duplicatedStories.map((story, i) => (
               <div key={i} className="w-[350px] glass rounded-3xl overflow-hidden shrink-0">
                 <div className="aspect-video overflow-hidden relative">
-                  <Image src={story.image} alt={story.name} fill className="object-cover" />
+                  <Image
+                    src={story.image}
+                    alt={story.name}
+                    fill
+                    sizes="(min-width: 1280px) 350px, (min-width: 768px) 45vw, 90vw"
+                    className="object-cover"
+                    style={story.image === "/photos/Mbits Drone.webp" ? { objectPosition: "center 18%" } : undefined}
+                  />
                 </div>
                 <div className="p-6 whitespace-normal">
                   <div className="flex items-center gap-2 text-brand-accent mb-2">

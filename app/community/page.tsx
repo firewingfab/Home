@@ -15,7 +15,7 @@ const SUCCESS_STORIES = [
 
 export default function CommunityPage() {
   return (
-    <main className="container mx-auto px-6 pt-32 pb-20">
+    <main className="container mx-auto px-6 pt-32 pb-6">
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -67,7 +67,7 @@ export default function CommunityPage() {
         </motion.div>
       </div>
 
-      <section className="mb-32">
+      <section className="mb-8">
         <div className="flex items-center justify-between mb-12">
           <h2 className="text-4xl font-bold">Achievements</h2>
           <button className="text-brand-accent font-bold flex items-center gap-2 hover:gap-3 transition-all">

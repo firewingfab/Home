@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 export default function AboutPage() {
   return (
-    <main className="container mx-auto px-6 pt-32 pb-20">
+    <main className="container mx-auto px-6 pt-32 pb-4">
       <div className="max-w-4xl mx-auto">
         <motion.section 
           initial={{ opacity: 0, y: 20 }}
@@ -13,7 +13,7 @@ export default function AboutPage() {
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
           id="vision" 
-          className="mb-32"
+          className="mb-12"
         >
           <h1 className="text-4xl md:text-6xl font-black mb-8 md:mb-12">VISION</h1>
           <div className="glass p-8 md:p-12 rounded-3xl md:rounded-[3rem] border-brand-accent/20 relative overflow-hidden">
@@ -36,7 +36,7 @@ export default function AboutPage() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="mb-32"
+          className="mb-6"
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-8 md:mb-12">CONTACT US</h2>
           <div className="grid md:grid-cols-2 gap-8">

@@ -1,20 +1,82 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# FirewingFab Website
 
-# Run and deploy your AI Studio app
+This is the main website for FirewingFab, built with Next.js (App Router).
 
-This contains everything you need to run your app locally.
+It includes:
+- A landing page with hero sections, portfolio highlights, and achievements
+- Static pages for Projects, Community, and About
+- A Join form that sends submissions by email using Resend
 
-View your app in AI Studio: https://ai.studio/apps/df6d2bf0-c888-483a-813a-9f37cbf93a1c
+## Tech stack
 
-## Run Locally
+- Next.js 16
+- React 19
+- TypeScript
+- Tailwind CSS v4
+- Framer Motion
+- Lucide icons
 
-**Prerequisites:**  Node.js
-
+## Local setup
 
 1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+```bash
+npm install
+```
+
+2. Create `.env.local` in the project root:
+```env
+RESEND_APIKEY=your_resend_api_key
+SENDER_EMAIL=your_verified_sender@yourdomain.com
+RECEIVER_ADDRESS=your_inbox@example.com
+```
+
+3. Start development server:
+```bash
+npm run dev
+```
+
+4. Open:
+`http://localhost:3000`
+
+## Available scripts
+
+- `npm run dev` - Start dev server on port 3000
+- `npm run build` - Create production build
+- `npm run start` - Start production server on port 3000
+
+## Join form email flow
+
+When a user submits `/join`:
+
+1. The client posts form data to `POST /api/join`
+2. The API validates required fields and honeypot spam field
+3. The API sends a structured email through Resend
+4. The receiver gets full submission details (contact, profile, and dream/vision)
+
+Main files:
+- Join page: `app/join/page.tsx`
+- Email API route: `app/api/join/route.ts`
+
+## Project structure
+
+```text
+app/
+  api/join/route.ts
+  about/page.tsx
+  community/page.tsx
+  join/page.tsx
+  projects/page.tsx
+  page.tsx
+  layout.tsx
+  globals.css
+
+src/components/
+  Navbar.tsx
+  Footer.tsx
+```
+
+## Notes
+
+- `SENDER_EMAIL` must be a domain/address verified in Resend.
+- The join email template is responsive for mobile email clients.
+- Keep secrets only in `.env.local` and never commit real API keys.

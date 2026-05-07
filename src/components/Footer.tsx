@@ -6,9 +6,9 @@ export default function Footer() {
   const logoUrl = "https://ik.imagekit.io/b3s3mttie3/Firewings%20/firewingfab_logo";
 
   return (
-    <footer className="bg-brand-blue border-t border-white/5 pt-20 pb-10">
+    <footer className="bg-brand-blue border-t border-white/5 pt-12 pb-8">
       <div className="container mx-auto px-6">
-        <div className="grid md:grid-cols-4 gap-12 mb-20">
+        <div className="grid md:grid-cols-4 gap-12 mb-12">
           <div className="col-span-2">
             <div className="flex items-center gap-2 mb-6">
               <div className="w-[7.1rem] h-[7.1rem] rounded-lg overflow-hidden flex items-center justify-center">
@@ -62,7 +62,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-500">
+        <div className="pt-6 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-500">
           <p>© 2026 FirewingFab. All rights reserved.</p>
           <p className="flex items-center gap-1">Powered by <span className="text-slate-300 font-bold">Abhram & Developers</span></p>
         </div>

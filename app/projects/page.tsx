@@ -5,8 +5,8 @@ import { Clock, Info, Plane, Car } from "lucide-react";
 import Image from "next/image";
 
 const PROJECTS = [
-  { id: "rc-air", title: "RC Air", description: "Master the skies with our FPV drone building kit.", difficulty: "Intermediate", cost: "₹0,000", image: "https://ik.imagekit.io/b3s3mttie3/Firewings%20/Dron1?auto=format&fit=crop&q=80&w=800", status: "Coming Soon" },
-  { id: "rc-track", title: "RC Track", description: "Build high-speed racing cars and line-following bots.", difficulty: "Beginner", cost: "₹0,000", image: "https://ik.imagekit.io/b3s3mttie3/Firewings%20/RCcar.jpg?auto=format&fit=crop&q=80&w=800", status: "Coming Soon" }
+  { id: "rc-air", title: "RC Air", description: "Master the skies with our FPV drone building kit.", difficulty: "Intermediate", cost: "₹0,000", image: "/photos/IMG_7883.webp", status: "Coming Soon" },
+  { id: "rc-track", title: "RC Track", description: "Build high-speed racing cars and line-following bots.", difficulty: "Beginner", cost: "₹0,000", image: "/photos/IMG_0613.webp", status: "Coming Soon" }
 ];
 
 export default function ProjectsPage() {
@@ -38,7 +38,13 @@ export default function ProjectsPage() {
             <div className="flex-1 relative group w-full">
               <div className="absolute -inset-4 bg-brand-accent/20 rounded-[2rem] blur-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
               <div className="relative rounded-[2rem] overflow-hidden shadow-2xl aspect-video">
-                <Image src={project.image} alt={project.title} fill className="object-cover" />
+                <Image
+                  src={project.image}
+                  alt={project.title}
+                  fill
+                  sizes="(min-width: 768px) 50vw, 95vw"
+                  className="object-cover"
+                />
                 <div className="absolute top-6 right-6 bg-brand-accent text-white px-4 py-2 rounded-full text-sm font-bold flex items-center gap-2">
                   <Clock className="w-4 h-4" /> {project.status}
                 </div>
