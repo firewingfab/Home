@@ -263,28 +263,28 @@ export default function HomePage() {
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          className="glass rounded-3xl md:rounded-[3rem] p-5 md:p-8 border-brand-accent/20 overflow-hidden"
+          className="glass rounded-3xl md:rounded-[3rem] p-4 md:p-6 border-brand-accent/20 overflow-hidden"
         >
-          <div className="grid lg:grid-cols-[minmax(0,1fr)_1.05fr] gap-6 md:gap-8 items-center">
-            <div className="relative rounded-2xl overflow-hidden border border-white/15 aspect-[16/10]">
+          <div className="grid lg:grid-cols-[minmax(260px,360px)_minmax(0,1fr)] gap-4 md:gap-6 items-center">
+            <div className="relative w-full max-w-[360px] mx-auto lg:mx-0 rounded-2xl overflow-hidden border border-white/15 aspect-[5/4]">
               <Image
                 src="/photos/rc_image/rc_event.webp"
                 alt="RC Event challenge preview"
                 fill
-                sizes="(min-width: 1024px) 42vw, 92vw"
+                sizes="(min-width: 1024px) 360px, (min-width: 768px) 52vw, 92vw"
                 className="object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-brand-blue/65 via-transparent to-transparent" />
             </div>
 
-            <div className="md:pr-4">
+            <div className="md:pr-2">
               <span className="text-brand-accent font-bold uppercase tracking-widest text-sm md:text-base mb-2 block">RC Event</span>
-              <h2 className="text-3xl md:text-5xl font-black leading-tight mb-4">Build. Race. Fly.</h2>
-              <p className="text-slate-200 text-sm md:text-base leading-relaxed mb-6">
+              <h2 className="text-2xl md:text-4xl font-black leading-tight mb-3">Build. Race. Fly.</h2>
+              <p className="text-slate-200 text-sm md:text-base leading-relaxed mb-5">
                 Join the Firewing RC challenge in Track or Air mode. Pick your slot between 7:00 AM and 8:00 PM,
                 register in seconds, and test your speed, control, and creativity on event day.
               </p>
-              <Link href="/rc-event" className="inline-flex px-8 py-4 bg-brand-accent text-white rounded-2xl font-bold hover:bg-orange-500 transition-colors shadow-lg shadow-brand-accent/30">
+              <Link href="/rc-event" className="inline-flex px-6 py-3 bg-brand-accent text-white rounded-2xl font-bold hover:bg-orange-500 transition-colors shadow-lg shadow-brand-accent/30">
                 Register Now
               </Link>
             </div>

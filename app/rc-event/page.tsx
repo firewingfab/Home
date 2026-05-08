@@ -23,7 +23,7 @@ const PLAN_OPTIONS: Record<
   }
 };
 
-const WHATSAPP_NUMBER = "6238668846";
+const WHATSAPP_NUMBER = "9961638639";
 const TRACK_MODE_IMAGE = "/photos/rc_image/rc_car.webp";
 const AIR_MODE_IMAGE = "/photos/rc_image/rc_drone.webp";
 

@@ -1,8 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { MessageCircle, Trophy, ArrowRight, Star, Award } from "lucide-react";
+import { MessageCircle, ArrowRight, Star, Award } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 const SUCCESS_STORIES = [
   { name: "Arjun Sharma", project: "Autonomous FPV Drone", achievement: "Won 1st Prize at National Drone Tech 2024", story: "Built a custom drone from scratch using Firewing boards. Won the district competition and now mentoring 10+ juniors.", image: "https://picsum.photos/seed/student1/400/300" },
@@ -54,16 +55,31 @@ export default function CommunityPage() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="glass p-6 md:p-8 rounded-3xl md:rounded-[2.5rem] border-blue-500/20 flex flex-col items-center text-center"
+          className="glass rounded-3xl md:rounded-[2.5rem] border-blue-500/20 overflow-hidden"
         >
-          <div className="w-16 h-16 bg-blue-500/20 rounded-2xl flex items-center justify-center mb-6">
-            <Trophy className="text-blue-400 w-8 h-8" />
+          <div className="grid grid-cols-1 md:grid-cols-2 items-stretch min-h-[300px] md:min-h-[320px]">
+            <Link href="/rc-event" aria-label="Open RC event registration" className="group relative block min-h-[220px] md:min-h-full">
+              <Image
+                src="/photos/rc_image/rc_event.webp"
+                alt="RC Event challenge"
+                fill
+                sizes="(min-width: 768px) 32vw, 92vw"
+                className="object-cover"
+              />
+            </Link>
+
+            <div className="p-5 md:p-7 flex items-center">
+              <div className="w-full">
+                <h2 className="text-2xl md:text-3xl font-bold mb-3 text-white">RC Event Challenge</h2>
+                <p className="text-slate-300 mb-5 text-sm md:text-base">
+                  Build, race, and fly with Track and Air modes. Tap the image or register now to book your slot.
+                </p>
+                <Link href="/rc-event" className="px-6 py-3 bg-brand-accent hover:bg-orange-500 text-white rounded-xl font-bold transition-colors inline-flex">
+                  Register Now
+                </Link>
+              </div>
+            </div>
           </div>
-          <h2 className="text-2xl font-bold mb-4">Upcoming Challenge</h2>
-          <p className="text-slate-400 mb-8">Coming Soon.</p>
-          <button className="mt-auto px-8 py-4 bg-brand-accent hover:bg-orange-500 text-white rounded-2xl font-bold transition-colors w-full">
-            Register Now
-          </button>
         </motion.div>
       </div>
 
