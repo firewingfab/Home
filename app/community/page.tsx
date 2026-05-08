@@ -87,7 +87,13 @@ export default function CommunityPage() {
             >
               <div className="flex items-center gap-4 mb-6">
                 <div className="relative w-16 h-16 shrink-0">
-                  <Image src={story.image} alt={story.name} fill className="rounded-full object-cover border-2 border-brand-accent" />
+                  <Image
+                    src={story.image}
+                    alt={story.name}
+                    fill
+                    sizes="64px"
+                    className="rounded-full object-cover border-2 border-brand-accent"
+                  />
                 </div>
                 <div>
                   <h3 className="font-bold text-lg">{story.name}</h3>

@@ -5,8 +5,8 @@ import { Clock, Info, Plane, Car } from "lucide-react";
 import Image from "next/image";
 
 const PROJECTS = [
-  { id: "rc-air", title: "RC Air", description: "Master the skies with our FPV drone building kit.", difficulty: "Intermediate", cost: "₹0,000", image: "/photos/IMG_7883.webp", status: "Coming Soon" },
-  { id: "rc-track", title: "RC Track", description: "Build high-speed racing cars and line-following bots.", difficulty: "Beginner", cost: "₹0,000", image: "/photos/IMG_0613.webp", status: "Coming Soon" }
+  { id: "rc-air", title: "RC Air", description: "Master the skies with our FPV drone building kit.", difficulty: "Intermediate", cost: "₹0,000", image: "/photos/projects/rc_drone.webp", status: "Coming Soon" },
+  { id: "rc-track", title: "RC Track", description: "Build high-speed racing cars and line-following bots.", difficulty: "Beginner", cost: "₹0,000", image: "https://ik.imagekit.io/b3s3mttie3/Firewings%20/RCcar.jpg?auto=format&fit=crop&q=80&w=800", status: "Coming Soon" }
 ];
 
 export default function ProjectsPage() {
@@ -85,3 +85,7 @@ export default function ProjectsPage() {
     </main>
   );
 }
+
+
+
+

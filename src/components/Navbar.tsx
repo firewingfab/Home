@@ -56,8 +56,8 @@ export default function Navbar() {
               ? 'bg-[#0a192f]/70 backdrop-blur-sm border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.5)]' 
               : 'bg-white/5 backdrop-blur-sm border border-white/5'
           }`}>
-            <Link href="/" className="flex items-center gap-2 group">
-              <div className="w-[3.25rem] h-[3.25rem] rounded-xl overflow-hidden flex items-center justify-center group-hover:rotate-12 transition-transform">
+            <Link href="/" className="flex items-center gap-2">
+              <div className="w-[3.25rem] h-[3.25rem] rounded-xl overflow-hidden flex items-center justify-center">
                 <Image src={logoUrl} alt="FirewingFab" width={52} height={52} className="w-full h-full object-cover object-center scale-[1.3]" />
               </div>
               <span className="text-lg md:text-xl font-black tracking-tighter uppercase hidden sm:block">

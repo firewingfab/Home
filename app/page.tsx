@@ -30,10 +30,10 @@ const SUCCESS_STORIES = [
     image: "/photos/IMG_7883.webp"
   },
   {
-    name: "Vishvajothy Training Session",
+    name: "Viswajyothi Training Session",
     project: "Drone, Robotics, and IoT",
     achievement: "Hands-On Training",
-    story: "Hands-on Drone, Robotics, and IoT training with Vishvajothy.",
+    story: "Hands-on Drone, Robotics, and IoT training with Viswajyothi.",
     image: "/photos/IMG_0613.webp"
   },
   {
@@ -257,22 +257,38 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Upcoming Challenge */}
+      {/* RC Event Spotlight */}
       <section className="container mx-auto px-6 py-1">
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          className="glass rounded-3xl md:rounded-[3rem] p-6 md:p-12 flex flex-col md:flex-row items-start md:items-center justify-between gap-8 border-brand-accent/20"
+          className="glass rounded-3xl md:rounded-[3rem] p-5 md:p-8 border-brand-accent/20 overflow-hidden"
         >
-          <div>
-            <span className="text-brand-accent font-bold uppercase tracking-widest text-base mb-2 block">Upcoming Challenge</span>
-            <h2 className="text-4xl font-bold mb-4">Coming soon</h2>
-            <p className="text-slate-300">Put your engineering skills to the test.</p>
+          <div className="grid lg:grid-cols-[minmax(0,1fr)_1.05fr] gap-6 md:gap-8 items-center">
+            <div className="relative rounded-2xl overflow-hidden border border-white/15 aspect-[16/10]">
+              <Image
+                src="/photos/rc_image/rc_event.webp"
+                alt="RC Event challenge preview"
+                fill
+                sizes="(min-width: 1024px) 42vw, 92vw"
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-brand-blue/65 via-transparent to-transparent" />
+            </div>
+
+            <div className="md:pr-4">
+              <span className="text-brand-accent font-bold uppercase tracking-widest text-sm md:text-base mb-2 block">RC Event</span>
+              <h2 className="text-3xl md:text-5xl font-black leading-tight mb-4">Build. Race. Fly.</h2>
+              <p className="text-slate-200 text-sm md:text-base leading-relaxed mb-6">
+                Join the Firewing RC challenge in Track or Air mode. Pick your slot between 7:00 AM and 8:00 PM,
+                register in seconds, and test your speed, control, and creativity on event day.
+              </p>
+              <Link href="/rc-event" className="inline-flex px-8 py-4 bg-brand-accent text-white rounded-2xl font-bold hover:bg-orange-500 transition-colors shadow-lg shadow-brand-accent/30">
+                Register Now
+              </Link>
+            </div>
           </div>
-          <Link href="/join" className="px-8 py-4 bg-brand-accent text-white rounded-2xl font-bold hover:bg-orange-500 transition-colors shadow-lg shadow-brand-accent/30">
-            Register Now
-          </Link>
         </motion.div>
       </section>
 
@@ -356,6 +372,11 @@ export default function HomePage() {
         </div>
 
         <div className="container mx-auto px-6 relative">
+          <div className="text-center mb-6 md:mb-8">
+            <h2 className="text-3xl md:text-5xl font-black tracking-tight">
+              Dreams <span className="text-brand-accent">Beyond Limits</span>
+            </h2>
+          </div>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -367,18 +388,16 @@ export default function HomePage() {
 
             <div className="relative z-10 grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_420px] items-start gap-6 lg:gap-8 p-5 md:p-7 lg:p-10">
               <div className="order-1 space-y-5 text-left lg:pr-2">
-                <div className="inline-flex items-center px-3.5 py-1.5 rounded-full border border-brand-accent/30 bg-brand-accent/10 text-brand-accent text-[11px] md:text-xs font-bold tracking-[0.18em] uppercase">
-                  Portfolio Spotlight
-                </div>
+
 
                 <div>
-                  <p className="text-brand-accent font-bold uppercase tracking-[0.16em] text-lg mb-2">Saji Thomas</p>
-                  <h2 className="text-3xl md:text-4xl lg:text-5xl font-black leading-tight tracking-tight">
-                    The Man Who Gave Wings to Dreams
-                  </h2>
-                  <p className="text-base md:text-xl text-slate-200 mt-3 font-medium">
+                  <p className="text-brand-accent font-bold uppercase tracking-[0.16em] text-4xl mb-2">Saji Thomas</p>
+                  <p className="text-base md:text-2xl text-slate-200 mt-3 mb-2 font-medium">
                     Self-Taught Aerospace Innovator
                   </p>
+                  <h2 className="text-md md:text-md lg:text-lg font-black leading-tight tracking-tight">
+                    The Man Who Gave Wings to Dreams
+                  </h2>
                 </div>
 
                 <div className="space-y-4 text-slate-200 leading-relaxed text-sm md:text-base">
